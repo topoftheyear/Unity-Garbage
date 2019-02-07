@@ -409,6 +409,8 @@ MonoBehaviour:
   speed: 0
   laserObject: {fileID: 1127234992552270, guid: dda09f3989390db4b986160ac9bec6f2,
     type: 2}
+  boomerangObject: {fileID: 1635297691805028, guid: 80464432c7514b342abefebd318e41b4,
+    type: 2}
 --- !u!4 &1316767200
 Transform:
   m_ObjectHideFlags: 0
@@ -468,6 +470,12 @@ Prefab:
       propertyPath: laserObject
       value: 
       objectReference: {fileID: 1127234992552270, guid: dda09f3989390db4b986160ac9bec6f2,
+        type: 2}
+    - target: {fileID: 114907637246677628, guid: 23df6fd28467403498033f370fe8caca,
+        type: 2}
+      propertyPath: boomerangObject
+      value: 
+      objectReference: {fileID: 1635297691805028, guid: 80464432c7514b342abefebd318e41b4,
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 23df6fd28467403498033f370fe8caca, type: 2}

@@ -7,10 +7,15 @@ public class Player : MonoBehaviour {
     public float speed;
 
     public GameObject laserObject = null;
+    public GameObject boomerangObject = null;
+
+    private string fKeyAction;
 
 	// Use this for initialization
 	void Start () {
         speed = 0.128f;
+
+        fKeyAction = "boomerang";
 	}
 	
 	// Update is called once per frame
@@ -48,20 +53,17 @@ public class Player : MonoBehaviour {
         // laser spawn
         if (Input.GetKey(KeyCode.F))
         {
-            // Help
-            GameObject bullshit = Instantiate(laserObject);
-            LaserBehavior otherBullshit = bullshit.GetComponent<LaserBehavior>();
-
-            List<Vector2> list = new List<Vector2>(new Vector2[] { Vector2.left, Vector2.right, Vector2.zero });
-            otherBullshit.horizontal_direction = list[(int)Mathf.Floor(Random.Range(0, 2.9f))];
-
-            List<Vector2> otherList = new List<Vector2>(new Vector2[] { Vector2.up, Vector2.down, Vector2.zero });
-            otherBullshit.vertical_direction = otherList[(int)Mathf.Floor(Random.Range(0, 2.9f))];
-
-            otherBullshit.transform.position = this.transform.position;
-            otherBullshit.transform.rotation = Random.rotation;
-
-            Destroy(bullshit, 2);
+            if (fKeyAction == "laser")
+            {
+                LaserSpawn();
+            }
+            else if (fKeyAction == "boomerang")
+            {
+                if (GameObject.Find("/Boomerang(Clone)") == null)
+                {
+                    BoomerangSpawn();
+                }
+            }
         }
 	}
 
@@ -78,5 +80,31 @@ public class Player : MonoBehaviour {
         {
             return 0;
         }
+    }
+
+    private void LaserSpawn()
+    {
+        // Help
+        GameObject bullshit = Instantiate(laserObject);
+        LaserBehavior otherBullshit = bullshit.GetComponent<LaserBehavior>();
+
+        List<Vector2> list = new List<Vector2>(new Vector2[] { Vector2.left, Vector2.right, Vector2.zero });
+        otherBullshit.horizontal_direction = list[(int)Mathf.Floor(Random.Range(0, 2.9f))];
+
+        List<Vector2> otherList = new List<Vector2>(new Vector2[] { Vector2.up, Vector2.down, Vector2.zero });
+        otherBullshit.vertical_direction = otherList[(int)Mathf.Floor(Random.Range(0, 2.9f))];
+
+        otherBullshit.transform.position = this.transform.position;
+        otherBullshit.transform.rotation = Random.rotation;
+
+        Destroy(bullshit, 2);
+    }
+
+    private void BoomerangSpawn()
+    {
+        // Help
+        GameObject boomerang = Instantiate(boomerangObject);
+        boomerang.transform.position = transform.position;
+        boomerang.GetComponent<BoomerangBehavior>().destination = Camera.main.ScreenToWorldPoint(Input.mousePosition);
     }
 }
