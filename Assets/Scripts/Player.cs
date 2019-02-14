@@ -65,6 +65,18 @@ public class Player : MonoBehaviour {
                 }
             }
         }
+        // Rotate between F key actions
+        if (Input.GetKeyUp(KeyCode.Q))
+        {
+            if (fKeyAction == "laser")
+            {
+                fKeyAction = "boomerang";
+            }
+            else if (fKeyAction == "boomerang")
+            {
+                fKeyAction = "laser";
+            }
+        }
 	}
 
     private float Fuckyou(float number)
