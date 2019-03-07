@@ -31,11 +31,11 @@ public class CameraFollow : MonoBehaviour {
         // temp
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            cam.orthographicSize -= 0.05f * cam.orthographicSize / 4;
+            //cam.orthographicSize -= 0.05f * cam.orthographicSize / 4;
         }
         if (Input.GetKey(KeyCode.DownArrow))
         {
-            cam.orthographicSize += 0.05f * cam.orthographicSize / 4;
+            //cam.orthographicSize += 0.05f * cam.orthographicSize / 4;
         }
 
 	}

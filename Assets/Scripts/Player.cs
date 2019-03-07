@@ -13,7 +13,7 @@ public class Player : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        speed = 0.128f;
+        speed = 0.08f;
 
         fKeyAction = "boomerang";
 	}
