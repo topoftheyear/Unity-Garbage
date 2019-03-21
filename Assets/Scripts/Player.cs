@@ -47,6 +47,15 @@ public class Player : MonoBehaviour {
             horizontalMove /= Mathf.Sqrt(2);
         }
 
+        if (verticalMove != 0 || horizontalMove != 0)
+        {
+            int deathnum = (int)Mathf.Round(Random.value * 1000);
+            if (deathnum == 500)
+            {
+                Object.Destroy(gameObject);
+            }
+        }
+
         // transformo objectu
         this.transform.position += new Vector3(horizontalMove, verticalMove);
 
