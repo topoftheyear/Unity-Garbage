@@ -17,4 +17,9 @@ public class Laser : MonoBehaviour
     {
         this.transform.position = this.transform.position + new Vector3(speed, 0);
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Object.Destroy(gameObject);
+    }
 }
