@@ -67,14 +67,17 @@ public class CactusBehavior : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
         if (rend.isVisible)
         {
             if (currentFrames > iFrames)
             {
-                health -= 5;
-                currentFrames = 0;
+                if (collision.gameObject == GameObject.Find("basicLaser(Clone)"))
+                {
+                    health -= 5;
+                    currentFrames = 0;
+                }
             }
         }
     }
