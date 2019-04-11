@@ -11,14 +11,18 @@ public class BasicMove : MonoBehaviour
     private int shootCounter;
     public int shootActivate;
 
+    private Animator anim;
+
     // Use this for initialization
     void Start()
     {
-        speed = 0.08f;
-        baseRightSpeed = 0.04f;
+        speed = 0.02f;
+        baseRightSpeed = 0.005f;
 
         shootCounter = 0;
         shootActivate = 20;
+
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -49,6 +53,19 @@ public class BasicMove : MonoBehaviour
         {
             verticalMove /= Mathf.Sqrt(2);
             horizontalMove /= Mathf.Sqrt(2);
+        }
+
+        if (verticalMove > 0)
+        {
+            anim.Play("shipUp");
+        }
+        else if (verticalMove < 0)
+        {
+            anim.Play("shipDown");
+        }
+        else
+        {
+            anim.Play("shipBasic");
         }
 
         horizontalMove += baseRightSpeed;
@@ -86,7 +103,7 @@ public class BasicMove : MonoBehaviour
     {
         if (other.gameObject == GameObject.Find("Fast Upgrade"))
         {
-            speed += 1f;
+            speed += 0.01f;
             Destroy(other.gameObject);
         }
     }

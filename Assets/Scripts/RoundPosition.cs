@@ -22,11 +22,13 @@ public class RoundPosition : MonoBehaviour
         var y = this.transform.position.y;
         var z = this.transform.position.z;
 
-        x = Mathf.Round(x * 100);
-        y = Mathf.Round(y * 100);
+        int num = 1000;
 
-        x /= 100;
-        y /= 100;
+        x = Mathf.Round(x * num);
+        y = Mathf.Round(y * num);
+
+        x /= num;
+        y /= num;
 
         this.transform.position = new Vector3(x, y, z);
     }
