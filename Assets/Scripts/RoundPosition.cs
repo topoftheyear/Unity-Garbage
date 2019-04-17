@@ -22,7 +22,7 @@ public class RoundPosition : MonoBehaviour
         var y = this.transform.position.y;
         var z = this.transform.position.z;
 
-        int num = 1000;
+        int num = 1;
 
         x = Mathf.Round(x * num);
         y = Mathf.Round(y * num);

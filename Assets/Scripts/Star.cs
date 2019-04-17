@@ -19,7 +19,7 @@ public class Star : MonoBehaviour
     {
         this.transform.position = this.transform.position - new Vector3(speed, 0, 0);
 
-        if (this.transform.position.x <= main.transform.position.x - 4f)
+        if (this.transform.position.x <= main.transform.position.x - 40f)
         {
             Destroy(this.gameObject);
         }

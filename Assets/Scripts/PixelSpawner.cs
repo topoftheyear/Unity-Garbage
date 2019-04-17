@@ -21,14 +21,14 @@ public class PixelSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.transform.position = player.transform.position + new Vector3(4f, 0);
+        this.transform.position = player.transform.position + new Vector3(40f, 0);
 
         int num = (int)Mathf.Round(Random.value * 5);
 
         if (num == 4)
         {
             GameObject thing = Instantiate(ztar);
-            int range = 4;
+            int range = 40;
             float position = Random.value * range;
 
             thing.transform.position = this.transform.position + new Vector3(0, position - (range / 2), 100);

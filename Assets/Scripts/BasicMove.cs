@@ -16,8 +16,8 @@ public class BasicMove : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        speed = 0.02f;
-        baseRightSpeed = 0.005f;
+        speed = 0.25f;
+        baseRightSpeed = 0.05f;
 
         shootCounter = 0;
         shootActivate = 20;
