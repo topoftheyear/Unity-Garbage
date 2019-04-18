@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Star : MonoBehaviour
 {
-    private float speed;
+    public float speed;
     Camera main;
 
     // Start is called before the first frame update
     void Start()
     {
-        speed = Random.value / 90 + 0.001f;
+        speed = Random.value / 32;
         main = Camera.main;
     }
 

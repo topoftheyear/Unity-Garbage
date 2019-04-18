@@ -16,8 +16,8 @@ public class BasicMove : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        speed = 0.25f;
-        baseRightSpeed = 0.05f;
+        speed = 0.15f;
+        baseRightSpeed = 0.04f;
 
         shootCounter = 0;
         shootActivate = 20;
@@ -101,10 +101,16 @@ public class BasicMove : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
+        print(other.gameObject);
+
         if (other.gameObject == GameObject.Find("Fast Upgrade"))
         {
             speed += 0.01f;
             Destroy(other.gameObject);
+        }
+        else if (other.gameObject == GameObject.Find("Land"))
+        {
+            Destroy(this.gameObject);
         }
     }
 
