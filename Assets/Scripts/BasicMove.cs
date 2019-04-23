@@ -94,7 +94,7 @@ public class BasicMove : MonoBehaviour
         GameObject thing = Instantiate(basicLaser);
         Laser behavior = thing.GetComponent<Laser>();
 
-        behavior.transform.position = this.transform.position + new Vector3(1,0);
+        behavior.transform.position = this.transform.position + new Vector3(1.3f, -0.2f);
 
         Destroy(thing, 2f);
     }

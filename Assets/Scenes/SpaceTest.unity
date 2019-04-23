@@ -169,7 +169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   baseRightSpeed: 0
-  basicLaser: {fileID: 5611185112166394889, guid: dd6a4d3eb47946243940c0f7de17d4a4,
+  basicLaser: {fileID: 691648329957817883, guid: d9c4bc93fe63e2843b2728209e2d4a7c,
     type: 3}
   shootActivate: 0
 --- !u!114 &253191870
