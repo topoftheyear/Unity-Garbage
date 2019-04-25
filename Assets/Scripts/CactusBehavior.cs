@@ -19,7 +19,7 @@ public class CactusBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        health = 10;
+        health = 4;
         iFrames = 10;
         currentFrames = 0;
 
@@ -67,15 +67,17 @@ public class CactusBehavior : MonoBehaviour
         }
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (rend.isVisible)
         {
             if (currentFrames > iFrames)
             {
-                if (collision.gameObject == GameObject.Find("basicLaser(Clone)"))
+                if (collision.gameObject.ToString().Contains("Laser"))
                 {
-                    health -= 5;
+                    Laser laser = collision.gameObject.GetComponent<Laser>();
+                    print(laser.damage);
+                    health -= laser.damage;
                     currentFrames = 0;
                 }
             }

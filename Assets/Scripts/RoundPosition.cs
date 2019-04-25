@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class RoundPosition : MonoBehaviour
 {
+    public int round;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +24,7 @@ public class RoundPosition : MonoBehaviour
         var y = this.transform.position.y;
         var z = this.transform.position.z;
 
-        int num = 16;
+        int num = round;
 
         x = Mathf.Round(x * num);
         y = Mathf.Round(y * num);

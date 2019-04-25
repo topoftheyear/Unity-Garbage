@@ -1,13 +1,21 @@
 fileFormatVersion: 2
 guid: af2c2f194262f314b86c0a0947dafc81
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: cactoos_0
-    21300002: cactoos_1
-    21300004: cactoos_2
-    21300006: cactoos_3
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: cactoos_0
+  - first:
+      213: 21300002
+    second: cactoos_1
+  - first:
+      213: 21300004
+    second: cactoos_2
+  - first:
+      213: 21300006
+    second: cactoos_3
   externalObjects: {}
-  serializedVersion: 9
+  serializedVersion: 10
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -49,7 +57,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 64
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -103,6 +111,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: b2d51d4db97e4934682d9135fa4031af
+      internalID: 21300000
       vertices: []
       indices: 
       edges: []
@@ -123,6 +132,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: d854d165849d8824db55d526699d722a
+      internalID: 21300002
       vertices: []
       indices: 
       edges: []
@@ -143,6 +153,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: ce85417a1cddfaa43a1513d5ea318ac7
+      internalID: 21300004
       vertices: []
       indices: 
       edges: []
@@ -163,6 +174,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: b158dd8243c25e04395ecf50402daf42
+      internalID: 21300006
       vertices: []
       indices: 
       edges: []
@@ -171,10 +183,12 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
+    secondaryTextures: []
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

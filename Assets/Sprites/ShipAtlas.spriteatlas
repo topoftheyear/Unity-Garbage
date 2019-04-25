@@ -34,7 +34,7 @@ SpriteAtlas:
       m_AndroidETC2FallbackOverride: 0
     packingSettings:
       serializedVersion: 2
-      padding: 4
+      padding: 8
       blockOffset: 1
       allowAlphaSplitting: 0
       enableRotation: 1
@@ -42,10 +42,36 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 2800000, guid: 54d0c40b867fe8c47aaf8b846ec5d950, type: 3}
-    totalSpriteSurfaceArea: 8192
+    - {fileID: 2800000, guid: 85993ea72a5a9414794a7855f66273d3, type: 3}
+    - {fileID: 2800000, guid: e1ba7c1d8018ac847b1c627a43b598b4, type: 3}
+    totalSpriteSurfaceArea: 15872
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 21300024, guid: 85993ea72a5a9414794a7855f66273d3, type: 3}
+  - {fileID: -2965277499441532945, guid: 85993ea72a5a9414794a7855f66273d3, type: 3}
+  - {fileID: 3303633125726857262, guid: 85993ea72a5a9414794a7855f66273d3, type: 3}
+  - {fileID: 1899292518746950074, guid: 85993ea72a5a9414794a7855f66273d3, type: 3}
+  - {fileID: -637099915578072303, guid: 85993ea72a5a9414794a7855f66273d3, type: 3}
+  - {fileID: -8686673053905745412, guid: 85993ea72a5a9414794a7855f66273d3, type: 3}
+  - {fileID: -4698378624941158212, guid: 85993ea72a5a9414794a7855f66273d3, type: 3}
+  - {fileID: 21300012, guid: 85993ea72a5a9414794a7855f66273d3, type: 3}
+  - {fileID: 21300014, guid: 85993ea72a5a9414794a7855f66273d3, type: 3}
+  - {fileID: 21300008, guid: 85993ea72a5a9414794a7855f66273d3, type: 3}
+  - {fileID: 21300010, guid: 85993ea72a5a9414794a7855f66273d3, type: 3}
+  - {fileID: 21300004, guid: 85993ea72a5a9414794a7855f66273d3, type: 3}
+  - {fileID: 21300006, guid: 85993ea72a5a9414794a7855f66273d3, type: 3}
+  - {fileID: 21300000, guid: 85993ea72a5a9414794a7855f66273d3, type: 3}
+  - {fileID: 21300002, guid: 85993ea72a5a9414794a7855f66273d3, type: 3}
+  - {fileID: 21300016, guid: 85993ea72a5a9414794a7855f66273d3, type: 3}
+  - {fileID: 21300018, guid: 85993ea72a5a9414794a7855f66273d3, type: 3}
+  - {fileID: 21300030, guid: 85993ea72a5a9414794a7855f66273d3, type: 3}
+  - {fileID: 21300028, guid: 85993ea72a5a9414794a7855f66273d3, type: 3}
+  - {fileID: -2289349486898112016, guid: 85993ea72a5a9414794a7855f66273d3, type: 3}
+  - {fileID: 4083120321769321626, guid: 85993ea72a5a9414794a7855f66273d3, type: 3}
+  - {fileID: 21300022, guid: 85993ea72a5a9414794a7855f66273d3, type: 3}
+  - {fileID: 21300020, guid: 85993ea72a5a9414794a7855f66273d3, type: 3}
+  - {fileID: 21300026, guid: 85993ea72a5a9414794a7855f66273d3, type: 3}
   - {fileID: 21300000, guid: 54d0c40b867fe8c47aaf8b846ec5d950, type: 3}
   - {fileID: 21300002, guid: 54d0c40b867fe8c47aaf8b846ec5d950, type: 3}
   - {fileID: 21300004, guid: 54d0c40b867fe8c47aaf8b846ec5d950, type: 3}
@@ -54,7 +80,37 @@ SpriteAtlas:
   - {fileID: 21300010, guid: 54d0c40b867fe8c47aaf8b846ec5d950, type: 3}
   - {fileID: 21300012, guid: 54d0c40b867fe8c47aaf8b846ec5d950, type: 3}
   - {fileID: 21300014, guid: 54d0c40b867fe8c47aaf8b846ec5d950, type: 3}
+  - {fileID: -5894102496656374185, guid: e1ba7c1d8018ac847b1c627a43b598b4, type: 3}
+  - {fileID: 8620793451522067032, guid: e1ba7c1d8018ac847b1c627a43b598b4, type: 3}
+  - {fileID: -1291412461251268091, guid: e1ba7c1d8018ac847b1c627a43b598b4, type: 3}
+  - {fileID: -7242099761134880253, guid: e1ba7c1d8018ac847b1c627a43b598b4, type: 3}
+  - {fileID: -5549721850830621648, guid: e1ba7c1d8018ac847b1c627a43b598b4, type: 3}
+  - {fileID: 6240745176203186943, guid: e1ba7c1d8018ac847b1c627a43b598b4, type: 3}
   m_PackedSpriteNamesToIndex:
+  - bileset_12
+  - bileset_19
+  - bileset_18
+  - bileset_20
+  - bileset_21
+  - bileset_22
+  - bileset_23
+  - bileset_6
+  - bileset_7
+  - bileset_4
+  - bileset_5
+  - bileset_2
+  - bileset_3
+  - bileset_0
+  - bileset_1
+  - bileset_8
+  - bileset_9
+  - bileset_15
+  - bileset_14
+  - bileset_17
+  - bileset_16
+  - bileset_11
+  - bileset_10
+  - bileset_13
   - ship_0
   - ship_1
   - ship_2
@@ -63,5 +119,11 @@ SpriteAtlas:
   - ship_5
   - ship_6
   - ship_7
+  - WaveLaser_0
+  - WaveLaser_1
+  - WaveLaser_2
+  - WaveLaser_3
+  - WaveLaser_4
+  - WaveLaser_5
   m_Tag: ShipAtlas
   m_IsVariant: 0
