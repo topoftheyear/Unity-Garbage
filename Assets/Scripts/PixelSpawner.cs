@@ -21,7 +21,7 @@ public class PixelSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.transform.position = player.transform.position + new Vector3(30f, 0);
+        this.transform.position = player.transform.position + new Vector3(15f, 0);
 
         int num = (int)Mathf.Round(Random.value * 3);
 

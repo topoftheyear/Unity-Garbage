@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Threading;
 
-public class BasicMove : MonoBehaviour
+public class PlayerBehavior : MonoBehaviour
 {
     public float speed;
     public float baseRightSpeed;
@@ -18,6 +18,7 @@ public class BasicMove : MonoBehaviour
     public AudioClip pain;
 
     private int dead;
+    public GameObject explosion;
 
     // Use this for initialization
     void Start()
@@ -99,13 +100,23 @@ public class BasicMove : MonoBehaviour
                 shootCounter += 2;
             }
         }
-        else if (dead < 6000)
+        else if (dead == 1)
+        {
+            dead++;
+            GameObject thing = Instantiate(explosion);
+            ExplosionBehavior behavior = thing.GetComponent<ExplosionBehavior>();
+
+            behavior.transform.position = this.transform.position;
+            GetComponent<Renderer>().enabled = false;
+        }
+        else if (dead < 100)
         {
             dead += 1;
         }
         else
         {
-            Application.LoadLevel(0); // SpaceTest
+            //Application.LoadLevel(0); // SpaceTest
+            UnityEngine.SceneManagement.SceneManager.LoadScene(0); // SpaceTest
         }
     }
 
@@ -149,7 +160,7 @@ public class BasicMove : MonoBehaviour
 
         if (other.gameObject.ToString().Contains("Scene"))
         {
-            Application.LoadLevel(other.gameObject.GetComponent<SceneTransfer>().scene);
+            UnityEngine.SceneManagement.SceneManager.LoadScene(other.gameObject.GetComponent<SceneTransfer>().scene);
         }
     }
 
@@ -160,5 +171,11 @@ public class BasicMove : MonoBehaviour
         {
             shootCounter = 1000;
         }
+
+        // Clamp the ship inside camera view
+        Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
+        pos.x = Mathf.Clamp(pos.x, 0.05f, 0.95f);
+        pos.y = Mathf.Clamp(pos.y, 0.05f, 0.95f);
+        transform.position = Camera.main.ViewportToWorldPoint(pos);
     }
 }

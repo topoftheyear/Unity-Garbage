@@ -44,7 +44,9 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 54d0c40b867fe8c47aaf8b846ec5d950, type: 3}
     - {fileID: 2800000, guid: 85993ea72a5a9414794a7855f66273d3, type: 3}
     - {fileID: 2800000, guid: e1ba7c1d8018ac847b1c627a43b598b4, type: 3}
-    totalSpriteSurfaceArea: 15872
+    - {fileID: 2800000, guid: 8e9a7a1bec06ae14398e8e33ef1d6b19, type: 3}
+    - {fileID: 2800000, guid: 39ce41ff7159b544a834efc8ae07e3de, type: 3}
+    totalSpriteSurfaceArea: 30208
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -80,12 +82,26 @@ SpriteAtlas:
   - {fileID: 21300010, guid: 54d0c40b867fe8c47aaf8b846ec5d950, type: 3}
   - {fileID: 21300012, guid: 54d0c40b867fe8c47aaf8b846ec5d950, type: 3}
   - {fileID: 21300014, guid: 54d0c40b867fe8c47aaf8b846ec5d950, type: 3}
+  - {fileID: 6263036686474342877, guid: 8e9a7a1bec06ae14398e8e33ef1d6b19, type: 3}
+  - {fileID: 687996585523816001, guid: 8e9a7a1bec06ae14398e8e33ef1d6b19, type: 3}
+  - {fileID: 8000181360814606191, guid: 8e9a7a1bec06ae14398e8e33ef1d6b19, type: 3}
+  - {fileID: -3178826808990684050, guid: 8e9a7a1bec06ae14398e8e33ef1d6b19, type: 3}
   - {fileID: -5894102496656374185, guid: e1ba7c1d8018ac847b1c627a43b598b4, type: 3}
   - {fileID: 8620793451522067032, guid: e1ba7c1d8018ac847b1c627a43b598b4, type: 3}
   - {fileID: -1291412461251268091, guid: e1ba7c1d8018ac847b1c627a43b598b4, type: 3}
   - {fileID: -7242099761134880253, guid: e1ba7c1d8018ac847b1c627a43b598b4, type: 3}
   - {fileID: -5549721850830621648, guid: e1ba7c1d8018ac847b1c627a43b598b4, type: 3}
   - {fileID: 6240745176203186943, guid: e1ba7c1d8018ac847b1c627a43b598b4, type: 3}
+  - {fileID: -5876230404456235001, guid: 39ce41ff7159b544a834efc8ae07e3de, type: 3}
+  - {fileID: 7788287979965792003, guid: 39ce41ff7159b544a834efc8ae07e3de, type: 3}
+  - {fileID: -2330519403281856691, guid: 39ce41ff7159b544a834efc8ae07e3de, type: 3}
+  - {fileID: -49130668184793455, guid: 39ce41ff7159b544a834efc8ae07e3de, type: 3}
+  - {fileID: 4348620978117878488, guid: 39ce41ff7159b544a834efc8ae07e3de, type: 3}
+  - {fileID: -4796932125324312052, guid: 39ce41ff7159b544a834efc8ae07e3de, type: 3}
+  - {fileID: -5600206312213581617, guid: 39ce41ff7159b544a834efc8ae07e3de, type: 3}
+  - {fileID: 5986030973748356752, guid: 39ce41ff7159b544a834efc8ae07e3de, type: 3}
+  - {fileID: -3690502768834906923, guid: 39ce41ff7159b544a834efc8ae07e3de, type: 3}
+  - {fileID: 3815954189206336483, guid: 39ce41ff7159b544a834efc8ae07e3de, type: 3}
   m_PackedSpriteNamesToIndex:
   - bileset_12
   - bileset_19
@@ -119,11 +135,25 @@ SpriteAtlas:
   - ship_5
   - ship_6
   - ship_7
+  - spyball_1
+  - spyball_0
+  - spyball_3
+  - spyball_2
   - WaveLaser_0
   - WaveLaser_1
   - WaveLaser_2
   - WaveLaser_3
   - WaveLaser_4
   - WaveLaser_5
+  - Explosion_9
+  - Explosion_8
+  - Explosion_5
+  - Explosion_4
+  - Explosion_7
+  - Explosion_6
+  - Explosion_1
+  - Explosion_0
+  - Explosion_3
+  - Explosion_2
   m_Tag: ShipAtlas
   m_IsVariant: 0

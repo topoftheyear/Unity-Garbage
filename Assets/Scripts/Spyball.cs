@@ -14,6 +14,8 @@ public class Spyball : MonoBehaviour
     private bool up;
     private float speed;
 
+    public GameObject explosion;
+
     Renderer rend;
 
     // Start is called before the first frame update
@@ -91,6 +93,11 @@ public class Spyball : MonoBehaviour
             currentFrames++;
             if (health <= 0)
             {
+                GameObject thing = Instantiate(explosion);
+                ExplosionBehavior behavior = thing.GetComponent<ExplosionBehavior>();
+
+                behavior.transform.position = this.transform.position;
+
                 Object.Destroy(gameObject);
             }
         }
