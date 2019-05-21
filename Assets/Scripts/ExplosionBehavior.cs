@@ -10,7 +10,7 @@ public class ExplosionBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        lifetime = 44;
+        lifetime = 40;
         currentLife = 0;
     }
 

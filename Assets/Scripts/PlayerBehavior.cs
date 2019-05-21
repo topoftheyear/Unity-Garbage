@@ -20,6 +20,8 @@ public class PlayerBehavior : MonoBehaviour
     private int dead;
     public GameObject explosion;
 
+    public GameObject radio;
+
     // Use this for initialization
     void Start()
     {
@@ -33,6 +35,8 @@ public class PlayerBehavior : MonoBehaviour
         audi = GetComponent<AudioSource>();
 
         dead = 0;
+
+        Instantiate(radio);
     }
 
     // Update is called once per frame
