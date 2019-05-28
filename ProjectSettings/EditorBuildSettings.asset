@@ -8,7 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SpaceTest.unity
     guid: d4420e81f16a2c446b15c1a234c35026
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Test.unity
     guid: 30c1c23bde6ad324c9f00c7c47bb72ec
   m_configObjects: {}

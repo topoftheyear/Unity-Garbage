@@ -2,71 +2,48 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spyball : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
-    private int health;
-    private int iFrames;
-    private int currentFrames;
+    public int health;
+    public int iFrames;
+    public int currentFrames;
 
-    private float maxY;
-    private float currentY;
-    private float minY;
-    private bool up;
-    private float speed;
+    public float speed;
 
     public GameObject explosion;
-
     Renderer rend;
-
+    
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
-        health = 2;
+        health = 1;
         iFrames = 10;
         currentFrames = 0;
 
-        maxY = 0.1f;
-        currentY = 0f;
-        minY = -0.1f;
-        up = true;
+        speed = 0.01f;
 
-        speed = 0.04f;
-
-        rend = GetComponent<Renderer>();
+        explosion = Resources.Load("Objects/Explosion") as GameObject;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        rend = GetComponent<Renderer>();
         if (rend.isVisible)
         {
-            Vector3 move;
-
-            Vector3 current = this.transform.position;
-
-            if (up)
-            {
-                currentY += speed / 4;
-
-                if (currentY > maxY)
-                {
-                    up = !up;
-                }
-            }
-            else
-            {
-                currentY -= speed / 4;
-
-                if (currentY < minY)
-                {
-                    up = !up;
-                }
-            }
-
-            move = new Vector3(-speed, currentY, 0);
-
-            this.transform.position = this.transform.position + move;
+            Move();
         }
+    }
+
+    public virtual void Move()
+    {
+        
+    }
+
+    public virtual void Attack()
+    {
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -78,7 +55,6 @@ public class Spyball : MonoBehaviour
                 if (collision.gameObject.ToString().Contains("Laser"))
                 {
                     Laser laser = collision.gameObject.GetComponent<Laser>();
-                    print(laser.damage);
                     health -= laser.damage;
                     currentFrames = 0;
                 }

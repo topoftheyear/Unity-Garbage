@@ -177,6 +177,7 @@ MonoBehaviour:
   pain: {fileID: 8300000, guid: a7d86ac56af9b8f43918b732c5c25967, type: 3}
   explosion: {fileID: 6904953749412640371, guid: 9f80bd5aad210ef41a6beea6c99096ab,
     type: 3}
+  radio: {fileID: 3485050357260869324, guid: 7830ef31def520d4288d0b2840c23fbd, type: 3}
 --- !u!114 &253191870
 MonoBehaviour:
   m_ObjectHideFlags: 0
