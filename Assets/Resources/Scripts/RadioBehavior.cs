@@ -43,7 +43,6 @@ public class RadioBehavior : MonoBehaviour
         {
             if (!Playing())
             {
-                print("playing " + part);
                 Generate();
                 PlayAll();
             }
@@ -57,7 +56,6 @@ public class RadioBehavior : MonoBehaviour
         if (ticker >= maxTick)
         {
             ticker = 0;
-            print("radio loop");
         }
     }
 

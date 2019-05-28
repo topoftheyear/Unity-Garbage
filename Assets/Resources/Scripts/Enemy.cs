@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     public float speed;
 
     public GameObject explosion;
+    public GameObject upgrade;
     Renderer rend;
     
     // Start is called before the first frame update
@@ -23,7 +24,16 @@ public class Enemy : MonoBehaviour
         speed = 0.01f;
 
         explosion = Resources.Load("Objects/Explosion") as GameObject;
-        
+
+        float num = Random.value;
+        if (num < 0.5f)
+        {
+            upgrade = Resources.Load("Objects/Upgrades/TimeUpgrade Variant") as GameObject;
+        }
+        else
+        {
+            upgrade = Resources.Load("Objects/Upgrades/SpeedUpgrade") as GameObject;
+        }
     }
 
     // Update is called once per frame
@@ -73,6 +83,15 @@ public class Enemy : MonoBehaviour
                 ExplosionBehavior behavior = thing.GetComponent<ExplosionBehavior>();
 
                 behavior.transform.position = this.transform.position;
+
+                // Spawn upgrade if there is one
+                if (upgrade != null)
+                {
+                    GameObject up = Instantiate(upgrade);
+                    Upgrade behave = up.GetComponent<Upgrade>();
+
+                    behave.transform.position = this.transform.position;
+                }
 
                 Object.Destroy(gameObject);
             }
