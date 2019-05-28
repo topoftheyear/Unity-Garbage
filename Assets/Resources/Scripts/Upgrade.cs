@@ -6,6 +6,7 @@ public class Upgrade : MonoBehaviour
 {
     public string upgradeName;
     public float speed;
+    public float speedScaling;
     public float maxSpeed;
 
     public int wait;
@@ -16,8 +17,9 @@ public class Upgrade : MonoBehaviour
     // Start is called before the first frame update
     public void Start()
     {
-        speed = 0.000000001f;
-        maxSpeed = 0.25f;
+        speed = 0f;
+        speedScaling = 0.01f;
+        maxSpeed = 0.4f;
 
         wait = 0;
         maxWait = 60;
@@ -34,7 +36,8 @@ public class Upgrade : MonoBehaviour
         }
         else
         {
-            speed *= 2;
+            speed += speedScaling;
+            speedScaling *= 0.98f;
             speed = Mathf.Clamp(speed, -maxSpeed, maxSpeed);
             transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed);
         }

@@ -9,8 +9,9 @@ public class PlayerBehavior : MonoBehaviour
     public float baseRightSpeed;
 
     public GameObject basicLaser;
+    public int damage;
     private int shootCounter;
-    public int shootActivate;
+    public float shootActivate;
 
     private Animator anim;
     private AudioSource audi;
@@ -25,11 +26,12 @@ public class PlayerBehavior : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        speed = 0.10f;
+        speed = 0.05f;
         baseRightSpeed = 0.02f;
 
+        damage = 1;
         shootCounter = 0;
-        shootActivate = 20;
+        shootActivate = 30f;
 
         anim = GetComponent<Animator>();
         audi = GetComponent<AudioSource>();
@@ -119,7 +121,6 @@ public class PlayerBehavior : MonoBehaviour
         }
         else
         {
-            //Application.LoadLevel(0); // SpaceTest
             UnityEngine.SceneManagement.SceneManager.LoadScene(0); // SpaceTest
         }
     }
@@ -129,7 +130,8 @@ public class PlayerBehavior : MonoBehaviour
         GameObject thing = Instantiate(basicLaser);
         Laser behavior = thing.GetComponent<Laser>();
 
-        behavior.transform.position = this.transform.position + new Vector3(1.3f, -0.2f);
+        behavior.transform.position = this.transform.position + new Vector3(1.4f, -0.2f);
+        behavior.damage = damage;
 
         Destroy(thing, 2f);
     }
@@ -140,10 +142,24 @@ public class PlayerBehavior : MonoBehaviour
         {
             print(other.gameObject);
 
-            if (other.gameObject == GameObject.Find("Fast Upgrade"))
+            if (other.gameObject.name.Contains("Upgrade"))
             {
-                speed += 0.01f;
-                Destroy(other.gameObject);
+                Upgrade upgrade = other.gameObject.GetComponent<Upgrade>();
+                string type = upgrade.upgradeName;
+
+                if (type == "Speed")
+                {
+                    SpeedUpgrade();
+                }
+                if (type == "Time")
+                {
+                    TimeUpgrade();
+                }
+                if (type == "Power")
+                {
+                    PowerUpgrade();
+                }
+
             }
             else if (other.gameObject.ToString().Contains("Laser"))
             {
@@ -181,5 +197,20 @@ public class PlayerBehavior : MonoBehaviour
         pos.x = Mathf.Clamp(pos.x, 0.05f, 0.95f);
         pos.y = Mathf.Clamp(pos.y, 0.05f, 0.95f);
         transform.position = Camera.main.ViewportToWorldPoint(pos);
+    }
+
+    void SpeedUpgrade()
+    {
+        speed += 0.02f;
+    }
+
+    void TimeUpgrade()
+    {
+        shootActivate -= 1f;
+    }
+
+    void PowerUpgrade()
+    {
+        damage += 1;
     }
 }

@@ -25,7 +25,9 @@ public class Laser : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject != player)
+        string name = collision.gameObject.name;
+        print("Laser collided with: " + name);
+        if (collision.gameObject != player && !name.Contains("Upgrade") && !name.Contains("Laser"))
         {
             Object.Destroy(gameObject);
         }
