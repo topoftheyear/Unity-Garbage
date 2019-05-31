@@ -5,13 +5,14 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public int health;
+    public int max_health;
     public int iFrames;
     public int currentFrames;
 
     public float speed;
 
-    public GameObject explosion;
-    public GameObject upgrade;
+    GameObject explosion;
+    GameObject upgrade;
     Renderer rend;
     
     // Start is called before the first frame update
@@ -34,6 +35,8 @@ public class Enemy : MonoBehaviour
         {
             upgrade = Resources.Load("Objects/Upgrades/SpeedUpgrade") as GameObject;
         }
+
+
     }
 
     // Update is called once per frame
@@ -44,6 +47,10 @@ public class Enemy : MonoBehaviour
         {
             Move();
         }
+
+        float health_ratio = (1 - health / max_health) * 45;
+        print(health_ratio);
+        rend.material.SetFloat("_HueShift", health_ratio);
     }
 
     public virtual void Move()

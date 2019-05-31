@@ -87,7 +87,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: afaa44e4222165e4dbc1caa89bc1ea6f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -151,8 +151,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9923371f58b1264b9d1f105562961fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 0
+  iFrames: 0
+  currentFrames: 0
+  speed: 0
   explosion: {fileID: 6904953749412640371, guid: 9f80bd5aad210ef41a6beea6c99096ab,
     type: 3}
+  upgrade: {fileID: 0}
 --- !u!70 &8402246605372757647
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

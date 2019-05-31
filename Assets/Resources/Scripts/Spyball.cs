@@ -14,6 +14,7 @@ public class Spyball : Enemy
     {
         base.Start();
         health = 2;
+        max_health = health;
 
         maxY = 0.1f;
         currentY = 0f;
