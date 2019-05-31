@@ -216,15 +216,15 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.00043478608
-    y: 0.0138121545
-    width: 0.9991304
-    height: 0.9723757
+    x: 0.0010362566
+    y: 0.0027624369
+    width: 0.9979275
+    height: 0.9944751
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5.5
+  orthographic size: 5.625
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -291,7 +291,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ca652c13353f448d9227970c0928082, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  referenceHeight: 176
+  referenceHeight: 180
   pixelsPerUnit: 16
 --- !u!1001 &481367765
 PrefabInstance:
