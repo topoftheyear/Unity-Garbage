@@ -9,18 +9,48 @@ public class Laser : MonoBehaviour
 
     public GameObject player;
 
+    private Animator anim;
+
+    private int life_counter;
+    private int death_counter;
+    private int life_death_max;
+
     // Start is called before the first frame update
     void Start()
     {
         speed = 0.24f;
-        player = GameObject.Find("Player");
         damage = 1;
+        player = GameObject.Find("Player");
+        anim = GetComponent<Animator>();
+
+        life_counter = 0;
+        death_counter = -1;
+        life_death_max = 15;
     }
 
     // Update is called once per frame
     void Update()
     {
-        this.transform.position = this.transform.position + new Vector3(speed, 0);
+        if (life_counter < life_death_max)
+        {
+            life_counter++;
+            this.transform.position = player.transform.position + new Vector3(1f, -0.15f);
+            anim.Play("laserStart");
+        }
+        else if (death_counter > -1 && death_counter < life_death_max)
+        {
+            death_counter++;
+            anim.Play("laserDestroy");
+        }
+        else if (death_counter >= life_death_max)
+        {
+            Object.Destroy(gameObject);
+        }
+        else
+        {
+            anim.Play("laserDefault");
+            this.transform.position = this.transform.position + new Vector3(speed, 0);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -29,7 +59,10 @@ public class Laser : MonoBehaviour
         print("Laser collided with: " + name);
         if (collision.gameObject != player && !name.Contains("Upgrade") && !name.Contains("Laser"))
         {
-            Object.Destroy(gameObject);
+            if (death_counter < 0)
+            {
+                death_counter++;
+            }
         }
     }
 }

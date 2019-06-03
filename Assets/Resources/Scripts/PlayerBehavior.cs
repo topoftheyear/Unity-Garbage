@@ -130,7 +130,7 @@ public class PlayerBehavior : MonoBehaviour
         GameObject thing = Instantiate(basicLaser);
         Laser behavior = thing.GetComponent<Laser>();
 
-        behavior.transform.position = this.transform.position + new Vector3(1.4f, -0.2f);
+        behavior.transform.position = this.transform.position + new Vector3(1f, -0.15f);
         behavior.damage = damage;
 
         Destroy(thing, 2f);
