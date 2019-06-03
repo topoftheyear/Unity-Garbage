@@ -45,7 +45,6 @@ public class Upgrade : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        print(collision.gameObject.name);
         if (collision.gameObject.name == "Player")
         {
             Object.Destroy(this.gameObject);

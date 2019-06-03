@@ -140,8 +140,6 @@ public class PlayerBehavior : MonoBehaviour
     {
         if (dead == 0)
         {
-            print(other.gameObject);
-
             if (other.gameObject.name.Contains("Upgrade"))
             {
                 Upgrade upgrade = other.gameObject.GetComponent<Upgrade>();
@@ -159,7 +157,6 @@ public class PlayerBehavior : MonoBehaviour
                 {
                     PowerUpgrade();
                 }
-
             }
             else if (other.gameObject.ToString().Contains("Laser"))
             {

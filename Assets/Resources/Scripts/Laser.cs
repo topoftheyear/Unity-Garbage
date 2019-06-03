@@ -26,6 +26,8 @@ public class Laser : MonoBehaviour
         life_counter = 0;
         death_counter = -1;
         life_death_max = 15;
+
+        anim.Play("laserStart");
     }
 
     // Update is called once per frame
@@ -56,7 +58,6 @@ public class Laser : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         string name = collision.gameObject.name;
-        print("Laser collided with: " + name);
         if (collision.gameObject != player && !name.Contains("Upgrade") && !name.Contains("Laser"))
         {
             if (death_counter < 0)

@@ -19,8 +19,8 @@ public class Enemy : MonoBehaviour
     public void Start()
     {
         health = 1;
-        iFrames = 10;
-        currentFrames = 0;
+        iFrames = 20;
+        currentFrames = iFrames;
 
         speed = 0.01f;
 
@@ -49,7 +49,6 @@ public class Enemy : MonoBehaviour
         }
 
         float health_ratio = (1 - health / max_health) * 45;
-        print(health_ratio);
         rend.material.SetFloat("_HueShift", health_ratio);
     }
 
@@ -74,6 +73,7 @@ public class Enemy : MonoBehaviour
                     Laser laser = collision.gameObject.GetComponent<Laser>();
                     health -= laser.damage;
                     currentFrames = 0;
+                    StartCoroutine(FlashSprites(rend, 5, 0.06f));
                 }
             }
         }
@@ -102,6 +102,50 @@ public class Enemy : MonoBehaviour
 
                 Object.Destroy(gameObject);
             }
+        }
+    }
+
+    /**
+     * Coroutine to create a flash effect on all sprite renderers passed in to the function.
+     *
+     * @param sprites   a sprite renderer array
+     * @param numTimes  how many times to flash
+     * @param delay     how long in between each flash
+     * @param disable   if you want to disable the renderer instead of change alpha
+     */
+    IEnumerator FlashSprites(Renderer sprite, int numTimes, float delay, bool disable = false)
+    {
+        // number of times to loop
+        for (int loop = 0; loop < numTimes; loop++)
+        {
+            // cycle through all sprites
+            if (disable)
+            {
+                // for disabling
+                sprite.enabled = false;
+            }
+            else
+            {
+                // for changing the saturation
+                rend.material.SetFloat("_Sat", 0f);
+            }
+
+            // delay specified amount
+            yield return new WaitForSeconds(delay);
+
+            if (disable)
+            {
+                // for disabling
+                sprite.enabled = true;
+            }
+            else
+            {
+                // for changing the saturation
+                rend.material.SetFloat("_Sat", 1f);
+            }
+
+            // delay specified amount
+            yield return new WaitForSeconds(delay);
         }
     }
 }
