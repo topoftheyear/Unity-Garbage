@@ -64,13 +64,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   baseRightSpeed: 0
-  basicLaser: {fileID: 691648329957817883, guid: d9c4bc93fe63e2843b2728209e2d4a7c,
+  basicLaser: {fileID: 5961441671246344114, guid: f79f07034d80f6e489179856075c85c3,
     type: 3}
+  damage: 0
   shootActivate: 0
   pain: {fileID: 8300000, guid: a7d86ac56af9b8f43918b732c5c25967, type: 3}
   explosion: {fileID: 6904953749412640371, guid: 9f80bd5aad210ef41a6beea6c99096ab,
     type: 3}
-  radio: {fileID: 3485050357260869324, guid: 7830ef31def520d4288d0b2840c23fbd, type: 3}
 --- !u!95 &5527903070472756635
 Animator:
   serializedVersion: 3

@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0
-  player: {fileID: 0}
+  player: {fileID: 5527903070472756705, guid: a4d978103afcf4745986e1a893f40f26, type: 3}
 --- !u!50 &4892526636707183654
 Rigidbody2D:
   serializedVersion: 4

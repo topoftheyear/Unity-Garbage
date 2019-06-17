@@ -21,7 +21,7 @@ public class PlayerBehavior : MonoBehaviour
     private int dead;
     public GameObject explosion;
 
-    public GameObject radio;
+    private GameMasterBehavior gm;
 
     // Use this for initialization
     void Start()
@@ -38,7 +38,7 @@ public class PlayerBehavior : MonoBehaviour
 
         dead = 0;
 
-        Instantiate(radio);
+        gm = GameObject.Find("GameMaster").GetComponent<GameMasterBehavior>();
     }
 
     // Update is called once per frame
@@ -121,7 +121,7 @@ public class PlayerBehavior : MonoBehaviour
         }
         else
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene(0); // SpaceTest
+            gm.PlayerDied();
         }
     }
 
@@ -177,7 +177,12 @@ public class PlayerBehavior : MonoBehaviour
 
         if (other.gameObject.ToString().Contains("Scene"))
         {
+            gm.ResetCheckpoint();
             UnityEngine.SceneManagement.SceneManager.LoadScene(other.gameObject.GetComponent<SceneTransfer>().scene);
+        }
+        else if (other.gameObject.ToString().Contains("Checkpoint"))
+        {
+            gm.UpdateCheckpoint(other.gameObject);
         }
     }
 
