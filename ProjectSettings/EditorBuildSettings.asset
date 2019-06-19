@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Resources/Scenes/SpaceTest.unity
     guid: d4420e81f16a2c446b15c1a234c35026
+  - enabled: 1
+    path: Assets/Resources/Scenes/SlimeLevel.unity
+    guid: fb2156bb42b48e54b894d6be8a38dff2
   m_configObjects: {}

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
+  m_Name: SlimeInvDownRight
+  m_EditorClassIdentifier: 
+  m_AnimatedSprites:
+  - {fileID: -885411575283065520, guid: c8ad298a16812d14881e06191e58c4f8, type: 3}
+  - {fileID: 5646618627794736755, guid: c8ad298a16812d14881e06191e58c4f8, type: 3}
+  - {fileID: 8867351143850191569, guid: c8ad298a16812d14881e06191e58c4f8, type: 3}
+  - {fileID: -537968912720464332, guid: c8ad298a16812d14881e06191e58c4f8, type: 3}
+  m_MinSpeed: 1
+  m_MaxSpeed: 1
+  m_AnimationStartTime: 0
+  m_TileColliderType: 1

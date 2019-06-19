@@ -22,6 +22,6 @@ public class MainMenuBehavior : MonoBehaviour
 
     public void LevelPress()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(1); // SpaceLevel
+        UnityEngine.SceneManagement.SceneManager.LoadScene(2); // SlimeLevel
     }
 }

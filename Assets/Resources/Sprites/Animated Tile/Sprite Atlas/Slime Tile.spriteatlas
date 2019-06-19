@@ -1,0 +1,155 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Slime Tile
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 0
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 2
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 0
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: c8ad298a16812d14881e06191e58c4f8, type: 3}
+    totalSpriteSurfaceArea: 13312
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 7207070442384927851, guid: c8ad298a16812d14881e06191e58c4f8, type: 3}
+  - {fileID: -8459730717822350771, guid: c8ad298a16812d14881e06191e58c4f8, type: 3}
+  - {fileID: -7624211522248052803, guid: c8ad298a16812d14881e06191e58c4f8, type: 3}
+  - {fileID: -2518527636770873004, guid: c8ad298a16812d14881e06191e58c4f8, type: 3}
+  - {fileID: 3285224065775777634, guid: c8ad298a16812d14881e06191e58c4f8, type: 3}
+  - {fileID: -537968912720464332, guid: c8ad298a16812d14881e06191e58c4f8, type: 3}
+  - {fileID: 7743539622288936805, guid: c8ad298a16812d14881e06191e58c4f8, type: 3}
+  - {fileID: -1327524932528628542, guid: c8ad298a16812d14881e06191e58c4f8, type: 3}
+  - {fileID: -6393621734359480960, guid: c8ad298a16812d14881e06191e58c4f8, type: 3}
+  - {fileID: -6062408860226155955, guid: c8ad298a16812d14881e06191e58c4f8, type: 3}
+  - {fileID: 5072334874489618563, guid: c8ad298a16812d14881e06191e58c4f8, type: 3}
+  - {fileID: 4574555223595062170, guid: c8ad298a16812d14881e06191e58c4f8, type: 3}
+  - {fileID: -9063441097362532911, guid: c8ad298a16812d14881e06191e58c4f8, type: 3}
+  - {fileID: 2274732327664146249, guid: c8ad298a16812d14881e06191e58c4f8, type: 3}
+  - {fileID: -916180432768901214, guid: c8ad298a16812d14881e06191e58c4f8, type: 3}
+  - {fileID: -632412502416996335, guid: c8ad298a16812d14881e06191e58c4f8, type: 3}
+  - {fileID: -9159038899561089968, guid: c8ad298a16812d14881e06191e58c4f8, type: 3}
+  - {fileID: 1606582867058512610, guid: c8ad298a16812d14881e06191e58c4f8, type: 3}
+  - {fileID: -6714459947298675054, guid: c8ad298a16812d14881e06191e58c4f8, type: 3}
+  - {fileID: 2916840120227478636, guid: c8ad298a16812d14881e06191e58c4f8, type: 3}
+  - {fileID: 3903401491096222141, guid: c8ad298a16812d14881e06191e58c4f8, type: 3}
+  - {fileID: 7715390197172808739, guid: c8ad298a16812d14881e06191e58c4f8, type: 3}
+  - {fileID: 2941056807469537305, guid: c8ad298a16812d14881e06191e58c4f8, type: 3}
+  - {fileID: -7484105609037352077, guid: c8ad298a16812d14881e06191e58c4f8, type: 3}
+  - {fileID: -2357058064497687014, guid: c8ad298a16812d14881e06191e58c4f8, type: 3}
+  - {fileID: -5200066231820389787, guid: c8ad298a16812d14881e06191e58c4f8, type: 3}
+  - {fileID: -5922035817265994653, guid: c8ad298a16812d14881e06191e58c4f8, type: 3}
+  - {fileID: 755094241349862974, guid: c8ad298a16812d14881e06191e58c4f8, type: 3}
+  - {fileID: 7349697065469050549, guid: c8ad298a16812d14881e06191e58c4f8, type: 3}
+  - {fileID: 1352565003926466266, guid: c8ad298a16812d14881e06191e58c4f8, type: 3}
+  - {fileID: -3779832723587372170, guid: c8ad298a16812d14881e06191e58c4f8, type: 3}
+  - {fileID: 7753906679713820996, guid: c8ad298a16812d14881e06191e58c4f8, type: 3}
+  - {fileID: -6802693378816262572, guid: c8ad298a16812d14881e06191e58c4f8, type: 3}
+  - {fileID: 8867351143850191569, guid: c8ad298a16812d14881e06191e58c4f8, type: 3}
+  - {fileID: -4879263160812182634, guid: c8ad298a16812d14881e06191e58c4f8, type: 3}
+  - {fileID: -4404318215421196030, guid: c8ad298a16812d14881e06191e58c4f8, type: 3}
+  - {fileID: -5537120932388460302, guid: c8ad298a16812d14881e06191e58c4f8, type: 3}
+  - {fileID: 5917670978575039776, guid: c8ad298a16812d14881e06191e58c4f8, type: 3}
+  - {fileID: 2902013323950529293, guid: c8ad298a16812d14881e06191e58c4f8, type: 3}
+  - {fileID: -3771880723492883815, guid: c8ad298a16812d14881e06191e58c4f8, type: 3}
+  - {fileID: -885411575283065520, guid: c8ad298a16812d14881e06191e58c4f8, type: 3}
+  - {fileID: 5862214209034924977, guid: c8ad298a16812d14881e06191e58c4f8, type: 3}
+  - {fileID: 4032987313305490485, guid: c8ad298a16812d14881e06191e58c4f8, type: 3}
+  - {fileID: -328749493013977131, guid: c8ad298a16812d14881e06191e58c4f8, type: 3}
+  - {fileID: 8947086624344005394, guid: c8ad298a16812d14881e06191e58c4f8, type: 3}
+  - {fileID: 1744898869483477974, guid: c8ad298a16812d14881e06191e58c4f8, type: 3}
+  - {fileID: -6367387959522596026, guid: c8ad298a16812d14881e06191e58c4f8, type: 3}
+  - {fileID: 920733854078170045, guid: c8ad298a16812d14881e06191e58c4f8, type: 3}
+  - {fileID: -8768345319865557775, guid: c8ad298a16812d14881e06191e58c4f8, type: 3}
+  - {fileID: 5646618627794736755, guid: c8ad298a16812d14881e06191e58c4f8, type: 3}
+  - {fileID: -4883308486618081445, guid: c8ad298a16812d14881e06191e58c4f8, type: 3}
+  - {fileID: 8321184891665449096, guid: c8ad298a16812d14881e06191e58c4f8, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Slimesheet_30
+  - Slimesheet_31
+  - Slimesheet_32
+  - Slimesheet_33
+  - Slimesheet_23
+  - Slimesheet_34
+  - Slimesheet_22
+  - Slimesheet_35
+  - Slimesheet_21
+  - Slimesheet_45
+  - Slimesheet_36
+  - Slimesheet_20
+  - Slimesheet_16
+  - Slimesheet_44
+  - Slimesheet_37
+  - Slimesheet_27
+  - Slimesheet_17
+  - Slimesheet_47
+  - Slimesheet_38
+  - Slimesheet_26
+  - Slimesheet_14
+  - Slimesheet_46
+  - Slimesheet_39
+  - Slimesheet_25
+  - Slimesheet_15
+  - Slimesheet_41
+  - Slimesheet_24
+  - Slimesheet_12
+  - Slimesheet_40
+  - Slimesheet_13
+  - Slimesheet_43
+  - Slimesheet_10
+  - Slimesheet_42
+  - Slimesheet_29
+  - Slimesheet_11
+  - Slimesheet_28
+  - Slimesheet_49
+  - Slimesheet_48
+  - Slimesheet_18
+  - Slimesheet_19
+  - Slimesheet_3
+  - Slimesheet_2
+  - Slimesheet_1
+  - Slimesheet_0
+  - Slimesheet_7
+  - Slimesheet_6
+  - Slimesheet_5
+  - Slimesheet_4
+  - Slimesheet_9
+  - Slimesheet_8
+  - Slimesheet_50
+  - Slimesheet_51
+  m_Tag: Slime Tile
+  m_IsVariant: 0

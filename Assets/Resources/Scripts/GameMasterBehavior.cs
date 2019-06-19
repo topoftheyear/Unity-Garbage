@@ -12,6 +12,7 @@ public class GameMasterBehavior : MonoBehaviour
     AudioSource audioPlayer;
 
     public AudioClip spaceTestSong;
+    public AudioClip slimeLevelSong;
 
     float checkpoint;
 
@@ -24,6 +25,10 @@ public class GameMasterBehavior : MonoBehaviour
         if (currentName == "SpaceTest")
         {
             song = spaceTestSong;
+        }
+        else if (currentName == "SlimeLevel")
+        {
+            song = slimeLevelSong;
         }
 
         audioPlayer = GetComponent<AudioSource>();
