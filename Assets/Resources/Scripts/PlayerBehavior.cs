@@ -158,31 +158,12 @@ public class PlayerBehavior : MonoBehaviour
                     PowerUpgrade();
                 }
             }
-            else if (other.gameObject.ToString().Contains("Laser"))
-            {
-                // This space left intentionally blank
-            }
             else
             {
                 audi.clip = pain;
                 audi.Play();
                 dead = 1;
             }
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        print(other.gameObject);
-
-        if (other.gameObject.ToString().Contains("Scene"))
-        {
-            gm.ResetCheckpoint();
-            UnityEngine.SceneManagement.SceneManager.LoadScene(other.gameObject.GetComponent<SceneTransfer>().scene);
-        }
-        else if (other.gameObject.ToString().Contains("Checkpoint"))
-        {
-            gm.UpdateCheckpoint(other.gameObject);
         }
     }
 

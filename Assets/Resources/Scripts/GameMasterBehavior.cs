@@ -7,6 +7,7 @@ using UnityEngine;
 public class GameMasterBehavior : MonoBehaviour
 {
     public GameObject player;
+    public GameObject theCamera;
 
     AudioClip song;
     AudioSource audioPlayer;
@@ -15,6 +16,7 @@ public class GameMasterBehavior : MonoBehaviour
     public AudioClip slimeLevelSong;
 
     float checkpoint;
+    int musicStart;
 
     // Awake is called even before Start
     void Awake()
@@ -33,6 +35,8 @@ public class GameMasterBehavior : MonoBehaviour
 
         audioPlayer = GetComponent<AudioSource>();
         audioPlayer.clip = song;
+        audioPlayer.playOnAwake = false;
+        audioPlayer.loop = false;
     }
 
     // Start is called before the first frame update
@@ -41,22 +45,42 @@ public class GameMasterBehavior : MonoBehaviour
         // Load from checkpoint
         LoadFile();
         GameObject.Find("Player").transform.position = new Vector3(checkpoint, 0, 0);
+        Physics2D.IgnoreCollision(this.GetComponent<Collider2D>(), GameObject.Find("Player").GetComponent<Collider2D>());
         Camera.main.transform.position = new Vector3(checkpoint, 0, -10);
+        audioPlayer.timeSamples = musicStart;
     }
 
     // Update is called once per frame
     void Update()
     {
         player = GameObject.Find("Player");
+        theCamera = GameObject.Find("Main Camera");
+        Physics2D.IgnoreCollision(this.GetComponent<Collider2D>(), player.GetComponent<Collider2D>());
 
-        if (player != null)
+        if (theCamera != null)
         {
-            this.transform.position = player.transform.position;
+            this.transform.position = new Vector3(theCamera.transform.position.x, theCamera.transform.position.y, 0);
         }
 
         if (!audioPlayer.isPlaying)
         {
             audioPlayer.Play();
+        }
+    }
+
+    // Check for game system updates
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        print(other.gameObject);
+
+        if (other.gameObject.ToString().Contains("Scene"))
+        {
+            ResetCheckpoint();
+            UnityEngine.SceneManagement.SceneManager.LoadScene(other.gameObject.GetComponent<SceneTransfer>().scene);
+        }
+        else if (other.gameObject.ToString().Contains("Checkpoint"))
+        {
+            UpdateCheckpoint(other.gameObject);
         }
     }
 
@@ -69,6 +93,7 @@ public class GameMasterBehavior : MonoBehaviour
     public void UpdateCheckpoint(GameObject newCheck)
     {
         checkpoint = newCheck.transform.position.x;
+        musicStart = audioPlayer.timeSamples;
         SaveFile();
     }
 
@@ -86,7 +111,7 @@ public class GameMasterBehavior : MonoBehaviour
         if (File.Exists(destination)) file = File.OpenWrite(destination);
         else file = File.Create(destination);
 
-        GameData data = new GameData(checkpoint);
+        GameData data = new GameData(checkpoint, musicStart);
         BinaryFormatter bf = new BinaryFormatter();
         bf.Serialize(file, data);
         file.Close();
@@ -109,6 +134,7 @@ public class GameMasterBehavior : MonoBehaviour
         file.Close();
 
         checkpoint = data.checkpoint;
+        musicStart = data.musicStart;
     }
 }
 
@@ -116,9 +142,11 @@ public class GameMasterBehavior : MonoBehaviour
 public class GameData
 {
     public float checkpoint;
+    public int musicStart;
 
-    public GameData(float check)
+    public GameData(float check, int musicS)
     {
         checkpoint = check;
+        musicStart = musicS;
     }
 }

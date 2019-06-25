@@ -1,25 +1,19 @@
 fileFormatVersion: 2
-guid: e1ba7c1d8018ac847b1c627a43b598b4
+guid: 42ff9395925f12e40abe6abd2e6df6f3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5894102496656374185
-    second: WaveLaser_0
+      213: -9175260774509100484
+    second: Sloom_0
   - first:
-      213: 8620793451522067032
-    second: WaveLaser_1
+      213: -1412829903283075736
+    second: Sloom_1
   - first:
-      213: -1291412461251268091
-    second: WaveLaser_2
+      213: -8984963562141484143
+    second: Sloom_2
   - first:
-      213: -7242099761134880253
-    second: WaveLaser_3
-  - first:
-      213: -5549721850830621648
-    second: WaveLaser_4
-  - first:
-      213: 6240745176203186943
-    second: WaveLaser_5
+      213: -8825154728179163858
+    second: Sloom_3
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -79,7 +73,7 @@ TextureImporter:
   - serializedVersion: 2
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
-    resizeAlgorithm: 1
+    resizeAlgorithm: 0
     textureFormat: 4
     textureCompression: 1
     compressionQuality: 50
@@ -90,7 +84,7 @@ TextureImporter:
   - serializedVersion: 2
     buildTarget: Standalone
     maxTextureSize: 2048
-    resizeAlgorithm: 1
+    resizeAlgorithm: 0
     textureFormat: 4
     textureCompression: 1
     compressionQuality: 50
@@ -102,13 +96,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: WaveLaser_0
+      name: Sloom_0
       rect:
         serializedVersion: 2
         x: 0
         y: 32
-        width: 16
-        height: 16
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -116,20 +110,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4a4681201c88fb040841ed4140b96bda
-      internalID: -5894102496656374185
+      spriteID: 3ab3a49ab18ddf941a3b703cddf36b3b
+      internalID: -9175260774509100484
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WaveLaser_1
+      name: Sloom_1
       rect:
         serializedVersion: 2
-        x: 16
+        x: 32
         y: 32
-        width: 16
-        height: 16
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,62 +131,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 705a7715cb9e45144a77d45d945f4e84
-      internalID: 8620793451522067032
+      spriteID: 5dbd4d1f03335174daa09f627cc7a69b
+      internalID: -1412829903283075736
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WaveLaser_2
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 16
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 12089b5938aa8b44a80005f97abb3094
-      internalID: -1291412461251268091
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WaveLaser_3
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 16
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1cc58fea28274954c87a472574827f72
-      internalID: -7242099761134880253
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WaveLaser_4
+      name: Sloom_2
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 16
-        height: 16
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -200,20 +152,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dd8e7191931a1e54d8fee501c49d833b
-      internalID: -5549721850830621648
+      spriteID: e8ab4091607cfea43b1bd0d180863d25
+      internalID: -8984963562141484143
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WaveLaser_5
+      name: Sloom_3
       rect:
         serializedVersion: 2
-        x: 16
+        x: 32
         y: 0
-        width: 16
-        height: 16
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -221,8 +173,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 42be830fc7cf7c141923fee0e0727979
-      internalID: 6240745176203186943
+      spriteID: c0d78c78aa1bdd445829583e1f0655b8
+      internalID: -8825154728179163858
       vertices: []
       indices: 
       edges: []
@@ -230,7 +182,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 11f46f4df0c0a8f428cf3c4817e7c9f8
+    spriteID: 433e91fb1454a0a488fe3146676c3e41
     internalID: 0
     vertices: []
     indices: 

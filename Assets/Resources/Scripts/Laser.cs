@@ -28,6 +28,9 @@ public class Laser : MonoBehaviour
         life_death_max = 15;
 
         anim.Play("laserStart");
+
+        Physics2D.IgnoreCollision(this.GetComponent<Collider2D>(), player.GetComponent<Collider2D>());
+        Physics2D.IgnoreCollision(this.GetComponent<Collider2D>(), GameObject.Find("GameMaster").GetComponent<Collider2D>());
     }
 
     // Update is called once per frame

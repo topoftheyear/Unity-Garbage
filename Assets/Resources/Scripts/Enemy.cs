@@ -36,7 +36,7 @@ public class Enemy : MonoBehaviour
             upgrade = Resources.Load("Objects/Upgrades/SpeedUpgrade") as GameObject;
         }
 
-
+        Physics2D.IgnoreCollision(this.gameObject.GetComponent<Collider2D>(), GameObject.Find("GameMaster").GetComponent<Collider2D>());
     }
 
     // Update is called once per frame
@@ -46,9 +46,10 @@ public class Enemy : MonoBehaviour
         if (rend.isVisible)
         {
             Move();
+            Attack();
         }
 
-        float health_ratio = (1 - health / max_health) * 45;
+        float health_ratio = (1 - ((float)health / (float)max_health)) * 90;
         rend.material.SetFloat("_HueShift", health_ratio);
     }
 
@@ -73,7 +74,7 @@ public class Enemy : MonoBehaviour
                     Laser laser = collision.gameObject.GetComponent<Laser>();
                     health -= laser.damage;
                     currentFrames = 0;
-                    StartCoroutine(FlashSprites(rend, 5, 0.06f));
+                    StartCoroutine(FlashSprites(rend, 2, 0.04f));
                 }
             }
         }

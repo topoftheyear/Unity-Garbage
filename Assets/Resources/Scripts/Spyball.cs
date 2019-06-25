@@ -24,7 +24,6 @@ public class Spyball : Enemy
         speed = 0.04f;
     }
 
-    // Update is called once per frame
     public override void Move()
     {
         Vector3 move;
