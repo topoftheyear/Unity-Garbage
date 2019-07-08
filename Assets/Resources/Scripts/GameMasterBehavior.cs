@@ -16,7 +16,7 @@ public class GameMasterBehavior : MonoBehaviour
     public AudioClip slimeLevelSong;
 
     float checkpoint;
-    int musicStart;
+    float musicStart;
 
     // Awake is called even before Start
     void Awake()
@@ -47,12 +47,18 @@ public class GameMasterBehavior : MonoBehaviour
         GameObject.Find("Player").transform.position = new Vector3(checkpoint, 0, 0);
         Physics2D.IgnoreCollision(this.GetComponent<Collider2D>(), GameObject.Find("Player").GetComponent<Collider2D>());
         Camera.main.transform.position = new Vector3(checkpoint, 0, -10);
-        audioPlayer.timeSamples = musicStart;
+        audioPlayer.time = musicStart;
     }
 
     // Update is called once per frame
     void Update()
     {
+        float t = audioPlayer.time;
+        if (InRange(t, 66.673f) || InRange(t, 130.678f) || InRange(t, 200.025f) || InRange(t, 0f))
+        {
+            print("X: " + this.transform.position.x + " Time: " + audioPlayer.time);
+        }
+        
         player = GameObject.Find("Player");
         theCamera = GameObject.Find("Main Camera");
         Physics2D.IgnoreCollision(this.GetComponent<Collider2D>(), player.GetComponent<Collider2D>());
@@ -66,6 +72,15 @@ public class GameMasterBehavior : MonoBehaviour
         {
             audioPlayer.Play();
         }
+    }
+
+    private bool InRange(float time, float target)
+    {
+        float ta = target - time;
+        if (ta < 0.05 && ta > -0.05){
+            return true;
+        }
+        return false;
     }
 
     // Check for game system updates
@@ -93,7 +108,7 @@ public class GameMasterBehavior : MonoBehaviour
     public void UpdateCheckpoint(GameObject newCheck)
     {
         checkpoint = newCheck.transform.position.x;
-        musicStart = audioPlayer.timeSamples;
+        musicStart = newCheck.GetComponent<CheckpointBehavior>().timestamp;
         SaveFile();
     }
 
@@ -142,9 +157,9 @@ public class GameMasterBehavior : MonoBehaviour
 public class GameData
 {
     public float checkpoint;
-    public int musicStart;
+    public float musicStart;
 
-    public GameData(float check, int musicS)
+    public GameData(float check, float musicS)
     {
         checkpoint = check;
         musicStart = musicS;
