@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PixelSpawner : MonoBehaviour
+public class PixelSpawnerBehavior : MonoBehaviour
 {
     GameObject player;
     public GameObject ztar;
@@ -22,6 +22,7 @@ public class PixelSpawner : MonoBehaviour
     void Update()
     {
         this.transform.position = player.transform.position + new Vector3(15f, 0);
+        transform.position = new Vector3(transform.position.x, transform.position.y, 19);
 
         int num = (int)Mathf.Round(Random.value * 3);
 
@@ -31,7 +32,7 @@ public class PixelSpawner : MonoBehaviour
             int range = 60;
             float position = Random.value * range;
 
-            thing.transform.position = this.transform.position + new Vector3(0, position - (range / 2), 100);
+            thing.transform.position = this.transform.position + new Vector3(0, position - (range / 2));
 
             int choice = (int)Mathf.Round(Random.value * 4);
             SpriteRenderer rend = thing.GetComponent<SpriteRenderer>();

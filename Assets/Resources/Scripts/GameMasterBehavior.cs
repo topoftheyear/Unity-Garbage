@@ -18,6 +18,10 @@ public class GameMasterBehavior : MonoBehaviour
     float checkpoint;
     float musicStart;
 
+    public GameObject background;
+    public float backgroundSpeed;
+    public bool backgroundState;
+
     // Awake is called even before Start
     void Awake()
     {
@@ -31,12 +35,15 @@ public class GameMasterBehavior : MonoBehaviour
         else if (currentName == "SlimeLevel")
         {
             song = slimeLevelSong;
+            backgroundSpeed = 0.25f;
         }
 
         audioPlayer = GetComponent<AudioSource>();
         audioPlayer.clip = song;
         audioPlayer.playOnAwake = false;
         audioPlayer.loop = false;
+
+        backgroundState = false;
     }
 
     // Start is called before the first frame update
@@ -53,11 +60,11 @@ public class GameMasterBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float t = audioPlayer.time;
+        /*float t = audioPlayer.time;
         if (InRange(t, 66.673f) || InRange(t, 130.678f) || InRange(t, 200.025f) || InRange(t, 0f))
         {
             print("X: " + this.transform.position.x + " Time: " + audioPlayer.time);
-        }
+        }*/
         
         player = GameObject.Find("Player");
         theCamera = GameObject.Find("Main Camera");
@@ -72,6 +79,10 @@ public class GameMasterBehavior : MonoBehaviour
         {
             audioPlayer.Play();
         }
+
+        background = GameObject.Find("GameMaster/Background");
+        var mat = background.GetComponent<Renderer>().material;
+        mat.mainTextureOffset = new Vector2(Time.time * backgroundSpeed, 0.5f);
     }
 
     private bool InRange(float time, float target)
@@ -96,6 +107,18 @@ public class GameMasterBehavior : MonoBehaviour
         else if (other.gameObject.ToString().Contains("Checkpoint"))
         {
             UpdateCheckpoint(other.gameObject);
+        }
+        else if (other.gameObject.ToString().Contains("Special Event"))
+        {
+            SpecialEventBehavior seb = other.GetComponent<SpecialEventBehavior>();
+            if (seb.eventName == "Background On")
+            {
+                StartCoroutine(ShowBackground());
+            }
+            else if (seb.eventName == "Background Off")
+            {
+                StartCoroutine(HideBackground());
+            }
         }
     }
 
@@ -150,6 +173,34 @@ public class GameMasterBehavior : MonoBehaviour
 
         checkpoint = data.checkpoint;
         musicStart = data.musicStart;
+    }
+
+    IEnumerator ShowBackground()
+    {
+        var mat = background.GetComponent<Renderer>().material;
+        float v = 0;
+        while (v < 1)
+        {
+            Color.RGBToHSV(mat.color, out float h, out float s, out v);
+            v += 0.01f;
+            mat.color = Color.HSVToRGB(h, s, v);
+            background.transform.position = new Vector3(background.transform.position.x, background.transform.position.y, background.transform.position.z - 0.1f);
+            yield return null;
+        }  
+    }
+
+    IEnumerator HideBackground()
+    {
+        var mat = background.GetComponent<Renderer>().material;
+        float v = 1;
+        while (v > 0)
+        {
+            Color.RGBToHSV(mat.color, out float h, out float s, out v);
+            v -= 0.01f;
+            mat.color = Color.HSVToRGB(h, s, v);
+            background.transform.position = new Vector3(background.transform.position.x, background.transform.position.y, background.transform.position.z + 0.1f);
+            yield return null;
+        }
     }
 }
 
