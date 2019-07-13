@@ -14,6 +14,7 @@ public class GameMasterBehavior : MonoBehaviour
 
     public AudioClip spaceTestSong;
     public AudioClip slimeLevelSong;
+    public string audioState;
 
     float checkpoint;
     float musicStart;
@@ -36,12 +37,14 @@ public class GameMasterBehavior : MonoBehaviour
         {
             song = slimeLevelSong;
             backgroundSpeed = 0.25f;
+            GameObject.Find("GameMaster/Background").GetComponent<Renderer>().material = (Material)Resources.Load("Sprites/Backgrounds/Materials/Slime Background");
         }
 
         audioPlayer = GetComponent<AudioSource>();
         audioPlayer.clip = song;
         audioPlayer.playOnAwake = false;
         audioPlayer.loop = false;
+        audioState = "not played";
 
         backgroundState = false;
     }
@@ -77,6 +80,14 @@ public class GameMasterBehavior : MonoBehaviour
 
         if (!audioPlayer.isPlaying)
         {
+            if (audioState == "not played")
+            {
+                audioState = "playing";
+            }
+            else if (audioState == "playing")
+            {
+                audioState = "boss";
+            }
             audioPlayer.Play();
         }
 
@@ -143,13 +154,13 @@ public class GameMasterBehavior : MonoBehaviour
 
     void SaveFile()
     {
-        string destination = Application.persistentDataPath + "/save.dat";
+        string destination = Application.persistentDataPath + "/in_level.dat";
         FileStream file;
 
         if (File.Exists(destination)) file = File.OpenWrite(destination);
         else file = File.Create(destination);
 
-        GameData data = new GameData(checkpoint, musicStart);
+        GameData data = new GameData(checkpoint, musicStart, backgroundState, audioState);
         BinaryFormatter bf = new BinaryFormatter();
         bf.Serialize(file, data);
         file.Close();
@@ -157,7 +168,7 @@ public class GameMasterBehavior : MonoBehaviour
 
     void LoadFile()
     {
-        string destination = Application.persistentDataPath + "/save.dat";
+        string destination = Application.persistentDataPath + "/in_level.dat";
         FileStream file;
 
         if (File.Exists(destination)) file = File.OpenRead(destination);
@@ -173,10 +184,23 @@ public class GameMasterBehavior : MonoBehaviour
 
         checkpoint = data.checkpoint;
         musicStart = data.musicStart;
+        backgroundState = data.backgroundState;
+
+        if (backgroundState)
+        {
+            background = GameObject.Find("GameMaster/Background");
+            var mat = background.GetComponent<Renderer>().material;
+            Color.RGBToHSV(mat.color, out float h, out float s, out float v);
+            mat.color = Color.HSVToRGB(h, s, 1);
+            background.transform.position = new Vector3(background.transform.position.x, background.transform.position.y, 18f);
+        }
+
+        audioState = data.audioState;
     }
 
     IEnumerator ShowBackground()
     {
+        backgroundState = true;
         var mat = background.GetComponent<Renderer>().material;
         float v = 0;
         while (v < 1)
@@ -191,6 +215,7 @@ public class GameMasterBehavior : MonoBehaviour
 
     IEnumerator HideBackground()
     {
+        backgroundState = false;
         var mat = background.GetComponent<Renderer>().material;
         float v = 1;
         while (v > 0)
@@ -209,10 +234,14 @@ public class GameData
 {
     public float checkpoint;
     public float musicStart;
+    public bool backgroundState;
+    public string audioState;
 
-    public GameData(float check, float musicS)
+    public GameData(float check, float musicS, bool backgroundS, string audioS)
     {
         checkpoint = check;
         musicStart = musicS;
+        backgroundState = backgroundS;
+        audioState = audioS;
     }
 }
