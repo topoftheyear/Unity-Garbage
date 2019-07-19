@@ -133,7 +133,7 @@ public class PlayerBehavior : MonoBehaviour
         behavior.transform.position = this.transform.position + new Vector3(1f, -0.15f);
         behavior.damage = damage;
 
-        Destroy(thing, 2f);
+        Destroy(thing, 4f);
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -184,12 +184,12 @@ public class PlayerBehavior : MonoBehaviour
 
     void SpeedUpgrade()
     {
-        speed += 0.02f;
+        speed += 0.01f;
     }
 
     void TimeUpgrade()
     {
-        shootActivate -= 1f;
+        shootActivate -= 10f;
     }
 
     void PowerUpgrade()

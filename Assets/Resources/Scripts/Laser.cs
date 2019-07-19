@@ -10,6 +10,7 @@ public class Laser : MonoBehaviour
     public GameObject player;
 
     private Animator anim;
+    private Renderer rend;
 
     private int life_counter;
     private int death_counter;
@@ -22,6 +23,7 @@ public class Laser : MonoBehaviour
         damage = 1;
         player = GameObject.Find("Player");
         anim = GetComponent<Animator>();
+        rend = GetComponent<Renderer>();
 
         life_counter = 0;
         death_counter = -1;
@@ -29,8 +31,13 @@ public class Laser : MonoBehaviour
 
         anim.Play("laserStart");
 
-        Physics2D.IgnoreCollision(this.GetComponent<Collider2D>(), player.GetComponent<Collider2D>());
-        Physics2D.IgnoreCollision(this.GetComponent<Collider2D>(), GameObject.Find("GameMaster").GetComponent<Collider2D>());
+        Collider2D coll = GetComponent<Collider2D>();
+        Physics2D.IgnoreCollision(coll, player.GetComponent<Collider2D>());
+        Physics2D.IgnoreCollision(coll, GameObject.Find("GameMaster").GetComponent<Collider2D>());
+        foreach (Laser thing in GameObject.FindObjectsOfType<Laser>())
+        {
+            Physics2D.IgnoreCollision(coll, thing.gameObject.GetComponent<Collider2D>());
+        }
     }
 
     // Update is called once per frame
@@ -47,7 +54,7 @@ public class Laser : MonoBehaviour
             death_counter++;
             anim.Play("laserDestroy");
         }
-        else if (death_counter >= life_death_max)
+        else if (death_counter >= life_death_max || !rend.isVisible)
         {
             Object.Destroy(gameObject);
         }

@@ -201,6 +201,13 @@ public class GameMasterBehavior : MonoBehaviour
     IEnumerator ShowBackground()
     {
         backgroundState = true;
+
+        GameObject stars = GameObject.Find("PixelSpawner");
+        if (stars != null)
+        {
+            Destroy(GameObject.Find("PixelSpawner"));
+        }
+
         var mat = background.GetComponent<Renderer>().material;
         float v = 0;
         while (v < 1)
@@ -216,6 +223,13 @@ public class GameMasterBehavior : MonoBehaviour
     IEnumerator HideBackground()
     {
         backgroundState = false;
+
+        GameObject stars = GameObject.Find("PixelSpawner");
+        if (stars == null)
+        {
+            Instantiate(Resources.Load("Objects/PixelSpawner"));
+        }
+
         var mat = background.GetComponent<Renderer>().material;
         float v = 1;
         while (v > 0)

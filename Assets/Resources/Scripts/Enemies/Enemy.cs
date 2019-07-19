@@ -6,21 +6,19 @@ public class Enemy : MonoBehaviour
 {
     public int health;
     public int max_health;
-    public int iFrames;
-    public int currentFrames;
 
     public float speed;
 
     GameObject explosion;
     GameObject upgrade;
     Renderer rend;
+
+    ArrayList collisions;
     
     // Start is called before the first frame update
     public void Start()
     {
         health = 1;
-        iFrames = 20;
-        currentFrames = iFrames;
 
         speed = 0.01f;
 
@@ -37,6 +35,8 @@ public class Enemy : MonoBehaviour
         }
 
         Physics2D.IgnoreCollision(this.gameObject.GetComponent<Collider2D>(), GameObject.Find("GameMaster").GetComponent<Collider2D>());
+
+        collisions = new ArrayList();
     }
 
     // Update is called once per frame
@@ -67,13 +67,14 @@ public class Enemy : MonoBehaviour
     {
         if (rend.isVisible)
         {
-            if (currentFrames > iFrames)
+            if (collision.gameObject.ToString().Contains("Laser"))
             {
-                if (collision.gameObject.ToString().Contains("Laser"))
+                // If object has already been collided with, don't bother
+                if (!collisions.Contains(collision.gameObject))
                 {
+                    collisions.Add(collision.gameObject);
                     Laser laser = collision.gameObject.GetComponent<Laser>();
                     health -= laser.damage;
-                    currentFrames = 0;
                     StartCoroutine(FlashSprites(rend, 2, 0.04f));
                 }
             }
@@ -84,7 +85,6 @@ public class Enemy : MonoBehaviour
     {
         if (rend.isVisible)
         {
-            currentFrames++;
             if (health <= 0)
             {
                 GameObject thing = Instantiate(explosion);
