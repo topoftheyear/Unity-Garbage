@@ -77,18 +77,29 @@ public class GameMasterBehavior : MonoBehaviour
         {
             this.transform.position = new Vector3(theCamera.transform.position.x, theCamera.transform.position.y, 0);
         }
-
+        
         if (!audioPlayer.isPlaying)
         {
             if (audioState == "not played")
             {
                 audioState = "playing";
+                audioPlayer.Play();
             }
             else if (audioState == "playing")
             {
-                audioState = "boss";
+                audioPlayer.Play();
             }
-            audioPlayer.Play();
+            else if (audioState == "boss")
+            {
+                audioPlayer.loop = true;
+                //audioPlayer.Play();
+            }
+            else if (audioState == "post boss")
+            {
+                audioPlayer.loop = false;
+                audioState = "no";
+                //audioPlayer.Play();
+            }
         }
 
         background = GameObject.Find("GameMaster/Background");
@@ -129,6 +140,14 @@ public class GameMasterBehavior : MonoBehaviour
             else if (seb.eventName == "Background Off")
             {
                 StartCoroutine(HideBackground());
+            }
+            else if (seb.eventName == "Stop")
+            {
+                player.GetComponent<PlayerBehavior>().baseRightSpeed = 0;
+            }
+            else if (seb.eventName == "Boss")
+            {
+                print("yay boss");
             }
         }
     }

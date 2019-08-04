@@ -26,6 +26,8 @@ public class PlayerBehavior : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        Application.targetFrameRate = 60;
+
         speed = 0.05f;
         baseRightSpeed = 0.02f;
 
