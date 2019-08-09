@@ -7,7 +7,7 @@ public class Sloom : Enemy
     float maxVSpeed;
 
     // Start is called before the first frame update
-    void Start()
+    new void Start()
     {
         base.Start();
         health = 4;

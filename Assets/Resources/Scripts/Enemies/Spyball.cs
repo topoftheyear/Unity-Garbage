@@ -10,7 +10,7 @@ public class Spyball : Enemy
     private bool up;
 
     // Start is called before the first frame update
-    void Start()
+    new void Start()
     {
         base.Start();
         health = 2;

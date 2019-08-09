@@ -14,7 +14,7 @@ public class SlimeBoss : Enemy
     public float test;
     
     // Start is called before the first frame update
-    void Start()
+    new void Start()
     {
         base.Start();
         health = 2;

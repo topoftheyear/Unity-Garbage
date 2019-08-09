@@ -2,22 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Wiggly : Enemy
+public class Sply : Enemy
 {
     // Start is called before the first frame update
     new void Start()
     {
         base.Start();
-        health = 6;
+        health = 2;
         max_health = health;
 
-        speed = 0.005f;
+        speed = 0.02f;
     }
 
     public override void Move()
     {
         GameObject player = GameObject.Find("Player");
-        if (player != null)
+        float distance = Mathf.Abs(Vector3.Distance(this.transform.position, player.transform.position));
+
+        if (distance < 6f)
         {
             float x = 0;
             float y = 0;
