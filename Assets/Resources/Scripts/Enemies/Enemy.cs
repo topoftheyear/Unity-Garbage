@@ -34,7 +34,14 @@ public class Enemy : MonoBehaviour
             upgrade = Resources.Load("Objects/Upgrades/SpeedUpgrade") as GameObject;
         }
 
+        rend = this.GetComponent<Renderer>();
+
         Physics2D.IgnoreCollision(this.gameObject.GetComponent<Collider2D>(), GameObject.Find("GameMaster").GetComponent<Collider2D>());
+
+        foreach (Enemy thing in GameObject.FindObjectsOfType<Enemy>())
+        {
+            Physics2D.IgnoreCollision(this.gameObject.GetComponent<Collider2D>(), thing.gameObject.GetComponent<Collider2D>());
+        }
 
         collisions = new ArrayList();
     }
@@ -42,7 +49,6 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rend = this.GetComponent<Renderer>();
         if (rend.isVisible)
         {
             Move();

@@ -53,9 +53,10 @@ public class GameMasterBehavior : MonoBehaviour
     void Start()
     {
         // Load from checkpoint
+        player = GameObject.Find("Player");
         LoadFile();
-        GameObject.Find("Player").transform.position = new Vector3(checkpoint, 0, 0);
-        Physics2D.IgnoreCollision(this.GetComponent<Collider2D>(), GameObject.Find("Player").GetComponent<Collider2D>());
+        player.transform.position = new Vector3(checkpoint, 0, 0);
+        Physics2D.IgnoreCollision(this.GetComponent<Collider2D>(), player.GetComponent<Collider2D>());
         Camera.main.transform.position = new Vector3(checkpoint, 0, -10);
         audioPlayer.time = musicStart;
     }
@@ -155,7 +156,19 @@ public class GameMasterBehavior : MonoBehaviour
     public void PlayerDied()
     {
         // f
-        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
+        PlayerBehavior pb = player.GetComponent<PlayerBehavior>();
+        pb.lives--;
+        SaveFile();
+        if (pb.lives <= 0)
+        {
+            DeleteSave();
+            UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
+        }
+        else
+        {
+            // Reload current scene
+            UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
+        }
     }
 
     public void UpdateCheckpoint(GameObject newCheck)
@@ -179,7 +192,9 @@ public class GameMasterBehavior : MonoBehaviour
         if (File.Exists(destination)) file = File.OpenWrite(destination);
         else file = File.Create(destination);
 
-        GameData data = new GameData(checkpoint, musicStart, backgroundState, audioState);
+        PlayerBehavior pb = player.GetComponent<PlayerBehavior>();
+
+        GameData data = new GameData(checkpoint, musicStart, backgroundState, audioState, pb.lives, pb.speed, pb.shootActivate, pb.damage);
         BinaryFormatter bf = new BinaryFormatter();
         bf.Serialize(file, data);
         file.Close();
@@ -193,7 +208,7 @@ public class GameMasterBehavior : MonoBehaviour
         if (File.Exists(destination)) file = File.OpenRead(destination);
         else
         {
-            Debug.LogError("File not found");
+            Debug.Log("File not found");
             return;
         }
 
@@ -215,6 +230,26 @@ public class GameMasterBehavior : MonoBehaviour
         }
 
         audioState = data.audioState;
+
+        PlayerBehavior pb = player.GetComponent<PlayerBehavior>();
+        pb.lives = data.lives;
+        pb.speed = data.speed;
+        pb.shootActivate = data.shootActivate;
+        pb.damage = data.damage;
+    }
+
+    void DeleteSave()
+    {
+        string destination = Application.persistentDataPath + "/in_level.dat";
+
+        if (File.Exists(destination))
+        {
+            File.Delete(destination);
+        }
+        else
+        {
+            Debug.Log("File: " + destination + " could not be deleted because it doesn't exist.");
+        }
     }
 
     IEnumerator ShowBackground()
@@ -270,11 +305,22 @@ public class GameData
     public bool backgroundState;
     public string audioState;
 
-    public GameData(float check, float musicS, bool backgroundS, string audioS)
+    // Player data
+    public int lives;
+    public float speed;
+    public float shootActivate;
+    public int damage;
+
+    public GameData(float check, float musicS, bool backgroundS, string audioS, int liv, float spee, float shootA, int dam)
     {
         checkpoint = check;
         musicStart = musicS;
         backgroundState = backgroundS;
         audioState = audioS;
+
+        lives = liv;
+        speed = spee;
+        shootActivate = shootA;
+        damage = dam;
     }
 }
