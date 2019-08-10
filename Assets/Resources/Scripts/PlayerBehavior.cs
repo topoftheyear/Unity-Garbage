@@ -9,7 +9,6 @@ public class PlayerBehavior : MonoBehaviour
     public float baseRightSpeed;
 
     public GameObject basicLaser;
-    public int lives;
     public int damage;
     private int shootCounter;
     public float shootActivate;
@@ -32,7 +31,6 @@ public class PlayerBehavior : MonoBehaviour
         speed = 0.05f;
         baseRightSpeed = 0.02f;
 
-        lives = 5;
         damage = 1;
         shootCounter = 0;
         shootActivate = 30f;
@@ -188,12 +186,12 @@ public class PlayerBehavior : MonoBehaviour
 
     void SpeedUpgrade()
     {
-        speed += 0.01f;
+        speed += 0.005f;
     }
 
     void TimeUpgrade()
     {
-        shootActivate -= 10f;
+        shootActivate -= 1f;
     }
 
     void PowerUpgrade()

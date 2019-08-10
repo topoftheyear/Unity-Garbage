@@ -3,31 +3,32 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameMasterBehavior : MonoBehaviour
 {
     public GameObject player;
+    public PlayerBehavior pb;
     public GameObject theCamera;
 
     AudioClip song;
     AudioSource audioPlayer;
+    string audioState;
 
     public AudioClip spaceTestSong;
     public AudioClip slimeLevelSong;
-    public string audioState;
-
-    float checkpoint;
-    float musicStart;
 
     public GameObject background;
     public float backgroundSpeed;
-    public bool backgroundState;
+    bool backgroundState;
+
+
+    public GameData data;
 
     // Awake is called even before Start
     void Awake()
     {
         string currentName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
-        checkpoint = 0f;
 
         if (currentName == "SpaceTest")
         {
@@ -44,9 +45,6 @@ public class GameMasterBehavior : MonoBehaviour
         audioPlayer.clip = song;
         audioPlayer.playOnAwake = false;
         audioPlayer.loop = false;
-        audioState = "not played";
-
-        backgroundState = false;
     }
 
     // Start is called before the first frame update
@@ -54,11 +52,39 @@ public class GameMasterBehavior : MonoBehaviour
     {
         // Load from checkpoint
         player = GameObject.Find("Player");
-        LoadFile();
-        player.transform.position = new Vector3(checkpoint, 0, 0);
+        pb = player.GetComponent<PlayerBehavior>();
+        theCamera = GameObject.Find("Main Camera");
+        data = LoadFile();
+        // If no data is found, set up some defaults
+        if (data == null)
+        {
+            data = new GameData
+            {
+                speed = pb.speed,
+                shootActivate = pb.shootActivate,
+                damage = pb.damage,
+                // Temp until a current out of level run save exists
+                lives = 5,
+                audioState = "not played",
+            };
+
+        }
+        player.transform.position = new Vector3(data.checkpoint, 0, 0);
         Physics2D.IgnoreCollision(this.GetComponent<Collider2D>(), player.GetComponent<Collider2D>());
-        Camera.main.transform.position = new Vector3(checkpoint, 0, -10);
-        audioPlayer.time = musicStart;
+        Camera.main.transform.position = new Vector3(data.checkpoint, 0, -10);
+        audioPlayer.time = data.musicStart;
+
+        backgroundState = data.backgroundState;
+        audioState = data.audioState;
+
+        if (backgroundState)
+        {
+            background = GameObject.Find("GameMaster/Background");
+            var mat = background.GetComponent<Renderer>().material;
+            Color.RGBToHSV(mat.color, out float h, out float s, out float v);
+            mat.color = Color.HSVToRGB(h, s, 1);
+            background.transform.position = new Vector3(background.transform.position.x, background.transform.position.y, 18f);
+        }
     }
 
     // Update is called once per frame
@@ -70,8 +96,6 @@ public class GameMasterBehavior : MonoBehaviour
             print("X: " + this.transform.position.x + " Time: " + audioPlayer.time);
         }*/
         
-        player = GameObject.Find("Player");
-        theCamera = GameObject.Find("Main Camera");
         Physics2D.IgnoreCollision(this.GetComponent<Collider2D>(), player.GetComponent<Collider2D>());
 
         if (theCamera != null)
@@ -88,10 +112,11 @@ public class GameMasterBehavior : MonoBehaviour
             }
             else if (audioState == "playing")
             {
-                audioPlayer.Play();
+                audioState = "pause";
             }
             else if (audioState == "boss")
             {
+                song = null;
                 audioPlayer.loop = true;
                 //audioPlayer.Play();
             }
@@ -102,10 +127,19 @@ public class GameMasterBehavior : MonoBehaviour
                 //audioPlayer.Play();
             }
         }
+        print(audioState);
 
         background = GameObject.Find("GameMaster/Background");
         var mat = background.GetComponent<Renderer>().material;
         mat.mainTextureOffset = new Vector2(Time.time * backgroundSpeed, 0.5f);
+
+        DrawUI();
+    }
+
+    void DrawUI()
+    {
+        Text lifeText = GameObject.Find("GameMaster/Main/Lives").GetComponent<Text>();
+        lifeText.text = data.lives + "";
     }
 
     private bool InRange(float time, float target)
@@ -144,7 +178,7 @@ public class GameMasterBehavior : MonoBehaviour
             }
             else if (seb.eventName == "Stop")
             {
-                player.GetComponent<PlayerBehavior>().baseRightSpeed = 0;
+                pb.baseRightSpeed = 0;
             }
             else if (seb.eventName == "Boss")
             {
@@ -156,16 +190,19 @@ public class GameMasterBehavior : MonoBehaviour
     public void PlayerDied()
     {
         // f
-        PlayerBehavior pb = player.GetComponent<PlayerBehavior>();
-        pb.lives--;
-        SaveFile();
-        if (pb.lives <= 0)
+        data.lives--;
+        if (data.lives <= 0)
         {
             DeleteSave();
             UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
         }
         else
         {
+            if (audioState == "playing")
+            {
+                data.audioState = "not played";
+            }
+            SaveFile();
             // Reload current scene
             UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
         }
@@ -173,14 +210,24 @@ public class GameMasterBehavior : MonoBehaviour
 
     public void UpdateCheckpoint(GameObject newCheck)
     {
-        checkpoint = newCheck.transform.position.x;
-        musicStart = newCheck.GetComponent<CheckpointBehavior>().timestamp;
-        SaveFile();
+        if (newCheck.transform.position.x != data.checkpoint)
+        {
+            // Display temporary text
+
+            data.checkpoint = newCheck.transform.position.x;
+            data.musicStart = newCheck.GetComponent<CheckpointBehavior>().timestamp;
+            data.audioState = audioState;
+            data.backgroundState = backgroundState;
+            data.speed = pb.speed;
+            data.shootActivate = pb.shootActivate;
+            data.damage = pb.damage;
+            SaveFile();
+        }
     }
 
     public void ResetCheckpoint()
     {
-        checkpoint = 0f;
+        data.checkpoint = 0f;
         SaveFile();
     }
 
@@ -192,15 +239,12 @@ public class GameMasterBehavior : MonoBehaviour
         if (File.Exists(destination)) file = File.OpenWrite(destination);
         else file = File.Create(destination);
 
-        PlayerBehavior pb = player.GetComponent<PlayerBehavior>();
-
-        GameData data = new GameData(checkpoint, musicStart, backgroundState, audioState, pb.lives, pb.speed, pb.shootActivate, pb.damage);
         BinaryFormatter bf = new BinaryFormatter();
         bf.Serialize(file, data);
         file.Close();
     }
 
-    void LoadFile()
+    GameData LoadFile()
     {
         string destination = Application.persistentDataPath + "/in_level.dat";
         FileStream file;
@@ -209,33 +253,20 @@ public class GameMasterBehavior : MonoBehaviour
         else
         {
             Debug.Log("File not found");
-            return;
+            return null;
         }
 
         BinaryFormatter bf = new BinaryFormatter();
         GameData data = (GameData)bf.Deserialize(file);
         file.Close();
 
-        checkpoint = data.checkpoint;
-        musicStart = data.musicStart;
-        backgroundState = data.backgroundState;
+        print(data);
 
-        if (backgroundState)
-        {
-            background = GameObject.Find("GameMaster/Background");
-            var mat = background.GetComponent<Renderer>().material;
-            Color.RGBToHSV(mat.color, out float h, out float s, out float v);
-            mat.color = Color.HSVToRGB(h, s, 1);
-            background.transform.position = new Vector3(background.transform.position.x, background.transform.position.y, 18f);
-        }
-
-        audioState = data.audioState;
-
-        PlayerBehavior pb = player.GetComponent<PlayerBehavior>();
-        pb.lives = data.lives;
         pb.speed = data.speed;
         pb.shootActivate = data.shootActivate;
         pb.damage = data.damage;
+
+        return data;
     }
 
     void DeleteSave()
@@ -311,6 +342,19 @@ public class GameData
     public float shootActivate;
     public int damage;
 
+    public GameData()
+    {
+        checkpoint = 0;
+        musicStart = 0;
+        backgroundState = false;
+        audioState = "not played";
+
+        lives = 0;
+        speed = 0;
+        shootActivate = 0;
+        damage = 0;
+    }
+
     public GameData(float check, float musicS, bool backgroundS, string audioS, int liv, float spee, float shootA, int dam)
     {
         checkpoint = check;
@@ -322,5 +366,10 @@ public class GameData
         speed = spee;
         shootActivate = shootA;
         damage = dam;
+    }
+
+    public override string ToString()
+    {
+        return checkpoint + " " + musicStart + " " + backgroundState + " " + audioState + " " + lives + " " + speed + " " + shootActivate + " " + damage;
     }
 }
