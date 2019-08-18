@@ -12,11 +12,13 @@ public class GameMasterBehavior : MonoBehaviour
     public GameObject theCamera;
 
     AudioClip song;
+    AudioClip bossSong;
     AudioSource audioPlayer;
     string audioState;
 
     public AudioClip spaceTestSong;
     public AudioClip slimeLevelSong;
+    public AudioClip bossIn11Song;
 
     public GameObject background;
     public float backgroundSpeed;
@@ -33,12 +35,14 @@ public class GameMasterBehavior : MonoBehaviour
         if (currentName == "SpaceTest")
         {
             song = spaceTestSong;
+            bossSong = null;
         }
         else if (currentName == "SlimeLevel")
         {
             song = slimeLevelSong;
+            bossSong = bossIn11Song;
             backgroundSpeed = 0.25f;
-            GameObject.Find("GameMaster/Background").GetComponent<Renderer>().material = (Material)Resources.Load("Sprites/Backgrounds/Materials/Slime Background");
+            GameObject.Find("GameMaster/Background").GetComponent<Renderer>().material = Resources.Load("Sprites/Backgrounds/Materials/Slime Background") as Material;
         }
 
         audioPlayer = GetComponent<AudioSource>();
@@ -85,6 +89,8 @@ public class GameMasterBehavior : MonoBehaviour
             mat.color = Color.HSVToRGB(h, s, 1);
             background.transform.position = new Vector3(background.transform.position.x, background.transform.position.y, 18f);
         }
+
+        // Establish UI
     }
 
     // Update is called once per frame
@@ -118,7 +124,7 @@ public class GameMasterBehavior : MonoBehaviour
             {
                 song = null;
                 audioPlayer.loop = true;
-                //audioPlayer.Play();
+                audioPlayer.Play();
             }
             else if (audioState == "post boss")
             {
@@ -127,7 +133,33 @@ public class GameMasterBehavior : MonoBehaviour
                 //audioPlayer.Play();
             }
         }
-        print(audioState);
+
+        // Test for boss aliveness
+        if (audioState == "boss")
+        {
+            audioPlayer.volume += 0.005f;
+            audioPlayer.volume = Mathf.Min(1, audioPlayer.volume);
+            
+            // Check to see if the boss is still alive
+            bool found = false;
+            foreach (Enemy thing in GameObject.FindObjectsOfType<Enemy>())
+            {
+                if (thing.name.Contains("(Boss)"))
+                {
+                    print("boss is alive");
+                    found = true;
+                    break;
+                }
+            }
+            if (!found)
+            {
+                // The boss as died :(
+                audioState = "post boss";
+                audioPlayer.Stop();
+
+                audioPlayer.volume = 100;
+            }
+        }
 
         background = GameObject.Find("GameMaster/Background");
         var mat = background.GetComponent<Renderer>().material;
@@ -182,7 +214,9 @@ public class GameMasterBehavior : MonoBehaviour
             }
             else if (seb.eventName == "Boss")
             {
-                print("yay boss");
+                audioState = "boss";
+                audioPlayer.clip = bossSong;
+                audioPlayer.volume = 0;
             }
         }
     }

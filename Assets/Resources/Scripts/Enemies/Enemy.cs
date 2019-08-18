@@ -10,7 +10,7 @@ public class Enemy : MonoBehaviour
     public float speed;
 
     GameObject explosion;
-    GameObject upgrade;
+    public GameObject upgrade;
     Renderer rend;
 
     ArrayList collisions;
