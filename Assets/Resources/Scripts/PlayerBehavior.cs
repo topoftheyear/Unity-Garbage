@@ -134,8 +134,6 @@ public class PlayerBehavior : MonoBehaviour
 
         behavior.transform.position = this.transform.position + new Vector3(1f, -0.15f);
         behavior.damage = damage;
-
-        Destroy(thing, 4f);
     }
 
     private void OnCollisionEnter2D(Collision2D other)

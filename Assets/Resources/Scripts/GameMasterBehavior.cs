@@ -146,7 +146,6 @@ public class GameMasterBehavior : MonoBehaviour
             {
                 if (thing.name.Contains("(Boss)"))
                 {
-                    print("boss is alive");
                     found = true;
                     break;
                 }
