@@ -50123,6 +50123,51 @@ PrefabInstance:
       propertyPath: winButton
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 755470304612937752, guid: 605f58e214b245d48ab51bcf9c566d5f,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 755470304612937752, guid: 605f58e214b245d48ab51bcf9c566d5f,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 755470304612937752, guid: 605f58e214b245d48ab51bcf9c566d5f,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 755470304612937752, guid: 605f58e214b245d48ab51bcf9c566d5f,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 755470304612937752, guid: 605f58e214b245d48ab51bcf9c566d5f,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 755470304612937752, guid: 605f58e214b245d48ab51bcf9c566d5f,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 755470304612937752, guid: 605f58e214b245d48ab51bcf9c566d5f,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 34.700012
+      objectReference: {fileID: 0}
+    - target: {fileID: 755470304612937752, guid: 605f58e214b245d48ab51bcf9c566d5f,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 31.100006
+      objectReference: {fileID: 0}
+    - target: {fileID: 4817891587178934320, guid: 605f58e214b245d48ab51bcf9c566d5f,
+        type: 3}
+      propertyPath: m_CullTransparentMesh
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 605f58e214b245d48ab51bcf9c566d5f, type: 3}
 --- !u!1 &799869862

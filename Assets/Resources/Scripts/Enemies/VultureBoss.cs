@@ -26,16 +26,15 @@ public class VultureBoss : Enemy
 
     public override void Move()
     {
-        Vector3 move = new Vector3(0, Random.Range(0, speed) - speed / 2);
+        this.transform.position = new Vector3(365, player.transform.position.y - 0.8f);
+
         
-        this.transform.position = this.transform.position + move;
-        this.transform.position = new Vector3(365, this.transform.position.y);
     }
 
     public override void Attack()
     {
         // If the vulture can attack
-        if (Mathf.Abs(player.transform.position.y - this.transform.position.y) < 0.5f && attackCounter == 30)
+        if (Mathf.Abs(player.transform.position.y - 0.8f - this.transform.position.y) < 0.25f && attackCounter == 30)
         {
             GameObject thing = Instantiate(Resources.Load("Objects/Weaponry/Speet") as GameObject);
             thing.transform.position = transform.position + new Vector3(-1.447f, 0.89f);
