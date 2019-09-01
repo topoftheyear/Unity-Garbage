@@ -47,13 +47,13 @@ public class MainMenuBehavior : MonoBehaviour
         }
     }
 
-    private void HideCanvas(CanvasGroup can)
+    public static void HideCanvas(CanvasGroup can)
     {
         can.alpha = 0f;
         can.blocksRaycasts = false;
     }
 
-    private void ShowCanvas(CanvasGroup can)
+    public static void ShowCanvas(CanvasGroup can)
     {
         can.alpha = 1f;
         can.blocksRaycasts = true;

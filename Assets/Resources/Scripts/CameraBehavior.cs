@@ -25,6 +25,6 @@ public class CameraBehavior : MonoBehaviour
         {
             print("player not found by camera and is likely dead :)");
         }
-        transform.position = transform.position + new Vector3(rightSpeed, 0);
+        transform.position = transform.position + new Vector3(rightSpeed * Time.deltaTime, 0);
     }
 }

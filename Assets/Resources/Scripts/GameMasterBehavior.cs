@@ -11,6 +11,8 @@ public class GameMasterBehavior : MonoBehaviour
     public PlayerBehavior pb;
     public GameObject theCamera;
 
+    public bool paused;
+
     AudioClip song;
     AudioClip bossSong;
     AudioSource audioPlayer;
@@ -24,6 +26,8 @@ public class GameMasterBehavior : MonoBehaviour
     public float backgroundSpeed;
     bool backgroundState;
 
+    public CanvasGroup UI, PauseScreen, EndScreen;
+    public Button cont;
 
     public GameData data;
 
@@ -31,6 +35,7 @@ public class GameMasterBehavior : MonoBehaviour
     void Awake()
     {
         string currentName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+        paused = false;
 
         if (currentName == "SpaceTest")
         {
@@ -91,6 +96,11 @@ public class GameMasterBehavior : MonoBehaviour
         }
 
         // Establish UI
+        MainMenuBehavior.ShowCanvas(UI);
+        MainMenuBehavior.HideCanvas(PauseScreen);
+        MainMenuBehavior.HideCanvas(EndScreen);
+
+        cont.onClick.AddListener(LeaveLevel);
     }
 
     // Update is called once per frame
@@ -107,6 +117,27 @@ public class GameMasterBehavior : MonoBehaviour
         if (theCamera != null)
         {
             this.transform.position = new Vector3(theCamera.transform.position.x, theCamera.transform.position.y, 0);
+        }
+
+        // Pause checking
+        if (Input.GetKeyUp(KeyCode.Escape))
+        {
+            paused = !paused;
+
+            if (paused)
+            {
+                Time.timeScale = 0;
+                MainMenuBehavior.HideCanvas(UI);
+                MainMenuBehavior.ShowCanvas(PauseScreen);
+                audioPlayer.Pause();
+            }
+            else
+            {
+                Time.timeScale = 1;
+                MainMenuBehavior.HideCanvas(PauseScreen);
+                MainMenuBehavior.ShowCanvas(UI);
+                audioPlayer.Play();
+            }
         }
         
         if (!audioPlayer.isPlaying)
@@ -137,7 +168,7 @@ public class GameMasterBehavior : MonoBehaviour
         // Test for boss aliveness
         if (audioState == "boss")
         {
-            audioPlayer.volume += 0.005f;
+            audioPlayer.volume += 0.002f;
             audioPlayer.volume = Mathf.Min(1, audioPlayer.volume);
             
             // Check to see if the boss is still alive
@@ -152,11 +183,11 @@ public class GameMasterBehavior : MonoBehaviour
             }
             if (!found)
             {
-                // The boss as died :(
+                // The boss has died :(
                 audioState = "post boss";
                 audioPlayer.Stop();
 
-                audioPlayer.volume = 100;
+                audioPlayer.volume = 1;
             }
         }
 
@@ -171,6 +202,12 @@ public class GameMasterBehavior : MonoBehaviour
     {
         Text lifeText = GameObject.Find("GameMaster/Main/Lives").GetComponent<Text>();
         lifeText.text = data.lives + "";
+
+        if (audioState == "post boss")
+        {
+            MainMenuBehavior.HideCanvas(UI);
+            MainMenuBehavior.ShowCanvas(EndScreen);
+        }
     }
 
     private bool InRange(float time, float target)
@@ -358,6 +395,12 @@ public class GameMasterBehavior : MonoBehaviour
             background.transform.position = new Vector3(background.transform.position.x, background.transform.position.y, background.transform.position.z + 0.1f);
             yield return null;
         }
+    }
+
+    void LeaveLevel()
+    {
+        DeleteSave();
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
     }
 }
 

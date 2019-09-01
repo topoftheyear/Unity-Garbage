@@ -13,32 +13,39 @@ public class Upgrade : MonoBehaviour
     public int maxWait;
 
     public GameObject player;
+    GameMasterBehavior gm;
     
     // Start is called before the first frame update
     public void Start()
     {
         speed = 0f;
-        speedScaling = 0.01f;
-        maxSpeed = 0.4f;
+        speedScaling = 0.0588f;
+        maxSpeed = 23.52f;
 
         wait = 0;
         maxWait = 60;
 
         player = GameObject.Find("Player");
+        gm = GameObject.Find("GameMaster").GetComponent<GameMasterBehavior>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (gm.paused)
+        {
+            return;
+        }
+
         if (wait < maxWait)
         {
             wait++;
         }
         else
         {
-            speed += speedScaling;
+            speed += speedScaling * Time.deltaTime;
             speedScaling *= 0.98f;
-            speed = Mathf.Clamp(speed, -maxSpeed, maxSpeed);
+            speed = Mathf.Clamp(speed, -maxSpeed * Time.deltaTime, maxSpeed * Time.deltaTime);
             transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed);
         }
     }

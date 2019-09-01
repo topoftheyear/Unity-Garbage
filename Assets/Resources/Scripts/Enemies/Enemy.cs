@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
     GameObject explosion;
     public GameObject upgrade;
     Renderer rend;
+    public GameMasterBehavior gm;
 
     ArrayList collisions;
     
@@ -36,6 +37,8 @@ public class Enemy : MonoBehaviour
 
         rend = this.GetComponent<Renderer>();
 
+        gm = GameObject.Find("GameMaster").GetComponent<GameMasterBehavior>();
+
         Physics2D.IgnoreCollision(this.gameObject.GetComponent<Collider2D>(), GameObject.Find("GameMaster").GetComponent<Collider2D>());
 
         foreach (Enemy thing in GameObject.FindObjectsOfType<Enemy>())
@@ -49,10 +52,19 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (gm.paused)
+        {
+            return;
+        }
+
         if (rend.isVisible)
         {
+            float oldSpeed = speed;
+            speed /= 0.017f;
+            speed *= Time.deltaTime;
             Move();
             Attack();
+            speed = oldSpeed;
         }
 
         float health_ratio = (1 - ((float)health / (float)max_health)) * 90;

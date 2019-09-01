@@ -28,8 +28,8 @@ public class PlayerBehavior : MonoBehaviour
     {
         Application.targetFrameRate = 60;
 
-        speed = 0.05f;
-        baseRightSpeed = 0.02f;
+        speed = 2.94f;
+        baseRightSpeed = 1.17f;
 
         damage = 1;
         shootCounter = 0;
@@ -46,6 +46,11 @@ public class PlayerBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (gm.paused)
+        {
+            return;
+        }
+
         if (dead == 0)
         {
             // Player Movement check
@@ -90,6 +95,9 @@ public class PlayerBehavior : MonoBehaviour
 
             horizontalMove += baseRightSpeed;
 
+            verticalMove *= Time.deltaTime;
+            horizontalMove *= Time.deltaTime;
+
             // transformo objectu
             this.transform.position += new Vector3(horizontalMove, verticalMove);
             // Fix rotation
@@ -124,6 +132,22 @@ public class PlayerBehavior : MonoBehaviour
         else
         {
             gm.PlayerDied();
+        }
+
+        if (Input.GetKeyUp(KeyCode.F5))
+        {
+            print("Speed cheat");
+            SpeedUpgrade();
+        }
+        if (Input.GetKeyUp(KeyCode.F6))
+        {
+            print("Attack speed cheat");
+            TimeUpgrade();
+        }
+        if (Input.GetKeyUp(KeyCode.F7))
+        {
+            print("Attack power cheat");
+            PowerUpgrade();
         }
     }
 
@@ -184,7 +208,7 @@ public class PlayerBehavior : MonoBehaviour
 
     void SpeedUpgrade()
     {
-        speed += 0.005f;
+        speed += 0.294f;
     }
 
     void TimeUpgrade()

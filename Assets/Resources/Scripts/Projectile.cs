@@ -8,6 +8,7 @@ public class Projectile : MonoBehaviour
     public int damage;
 
     public GameObject parent;
+    public GameMasterBehavior gm;
 
     public Animator anim;
     public Renderer rend;
@@ -33,6 +34,8 @@ public class Projectile : MonoBehaviour
         anim = this.GetComponent<Animator>();
         rend = this.GetComponent<Renderer>();
 
+        gm = GameObject.Find("GameMaster").GetComponent<GameMasterBehavior>();
+
         life_counter = 0;
         death_counter = -1;
         life_death_max = 15;
@@ -48,6 +51,15 @@ public class Projectile : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
+        if (gm.paused)
+        {
+            return;
+        }
+
+        float oldSpeed = speed;
+        speed /= 0.017f;
+        speed *= Time.deltaTime;
+
         if (life_counter < life_death_max)
         {
             life_counter++;
@@ -68,6 +80,8 @@ public class Projectile : MonoBehaviour
             anim.Play(animDefault);
             this.transform.position = this.transform.position + new Vector3(speed, 0);
         }
+
+        speed = oldSpeed;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
