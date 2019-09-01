@@ -48,8 +48,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ece49fbb969aaf04882938a3d17e7dee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 0
   damage: 0
-  player: {fileID: 5527903070472756705, guid: a4d978103afcf4745986e1a893f40f26, type: 3}
+  parent: {fileID: 0}
+  anim: {fileID: 0}
+  rend: {fileID: 0}
+  coll: {fileID: 0}
+  life_death_max: 0
+  death_death_max: 0
+  animStart: 
+  animDefault: 
+  animDestroy: 
+  xOffset: 0
+  yOffset: 0
 --- !u!50 &4892526636707183654
 Rigidbody2D:
   serializedVersion: 4
@@ -166,7 +177,8 @@ AudioSource:
   m_GameObject: {fileID: 5961441671246344114}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 7319970813976237498, guid: 36c76ded1c0b65d4da5ee2158439245b,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: bd61fbaf0f2a5f34c9c41c5a2d75d8af, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.5
