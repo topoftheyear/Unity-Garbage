@@ -11,7 +11,7 @@ public class Sply : Enemy
         health = 2;
         max_health = health;
 
-        speed = 0.02f;
+        speed = 0.03f;
     }
 
     public override void Move()

@@ -29,7 +29,7 @@ public class PlayerBehavior : MonoBehaviour
         Application.targetFrameRate = 60;
 
         speed = 2.94f;
-        baseRightSpeed = 1.17f;
+        baseRightSpeed = 1.18f;
 
         damage = 1;
         shootCounter = 0;

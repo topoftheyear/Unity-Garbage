@@ -19,7 +19,7 @@ public class Upgrade : MonoBehaviour
     public void Start()
     {
         speed = 0f;
-        speedScaling = 0.0588f;
+        speedScaling = 0.5f;
         maxSpeed = 23.52f;
 
         wait = 0;
