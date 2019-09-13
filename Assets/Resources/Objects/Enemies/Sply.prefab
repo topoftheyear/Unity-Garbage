@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8758880158876698025}
   - component: {fileID: 8758880158876698024}
   - component: {fileID: 8758880158876698028}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Sply
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -157,3 +157,5 @@ MonoBehaviour:
   health: 0
   max_health: 0
   speed: 0
+  upgrade: {fileID: 0}
+  gm: {fileID: 0}

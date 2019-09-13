@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7718845131460728280}
   - component: {fileID: 7718845131460728281}
   - component: {fileID: 7718845131460728278}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wiggly
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68,6 +68,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -79,6 +80,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -183,6 +185,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 0
   max_health: 0
-  iFrames: 0
-  currentFrames: 0
   speed: 0
+  upgrade: {fileID: 0}
+  gm: {fileID: 0}

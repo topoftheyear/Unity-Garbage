@@ -81,6 +81,7 @@ public class GameMasterBehavior : MonoBehaviour
         player.transform.position = new Vector3(data.checkpoint, 0, 0);
         Physics2D.IgnoreCollision(this.GetComponent<Collider2D>(), player.GetComponent<Collider2D>());
         Camera.main.transform.position = new Vector3(data.checkpoint, 0, -10);
+        this.transform.position = new Vector3(data.checkpoint, 0, 0);
         audioPlayer.time = data.musicStart;
 
         backgroundState = data.backgroundState;
@@ -93,6 +94,16 @@ public class GameMasterBehavior : MonoBehaviour
             Color.RGBToHSV(mat.color, out float h, out float s, out float v);
             mat.color = Color.HSVToRGB(h, s, 1);
             background.transform.position = new Vector3(background.transform.position.x, background.transform.position.y, 18f);
+        }
+
+        // Delete enemies on screen (for respawns)
+        GameObject[] enemies = SideHelpers.FindGameObjectsInLayer(9);
+        foreach (GameObject enemy in enemies)
+        {
+            if (Vector3.Distance(enemy.transform.position, this.transform.position) < 12f)
+            {
+                Object.Destroy(enemy);
+            }
         }
 
         // Establish UI
