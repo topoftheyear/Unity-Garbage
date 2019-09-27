@@ -78,6 +78,10 @@ public class GameMasterBehavior : MonoBehaviour
             };
 
         }
+        pb.speed = data.speed;
+        pb.shootActivate = data.shootActivate;
+        pb.damage = data.damage;
+
         player.transform.position = new Vector3(data.checkpoint, 0, 0);
         Physics2D.IgnoreCollision(this.GetComponent<Collider2D>(), player.GetComponent<Collider2D>());
         Camera.main.transform.position = new Vector3(data.checkpoint, 0, -10);
@@ -314,6 +318,7 @@ public class GameMasterBehavior : MonoBehaviour
 
     void SaveFile()
     {
+        print("Saving internal level data");
         string destination = Application.persistentDataPath + "/in_level.dat";
         FileStream file;
 
@@ -327,6 +332,7 @@ public class GameMasterBehavior : MonoBehaviour
 
     GameData LoadFile()
     {
+        print("Loading internal level data");
         string destination = Application.persistentDataPath + "/in_level.dat";
         FileStream file;
 
@@ -340,8 +346,6 @@ public class GameMasterBehavior : MonoBehaviour
         BinaryFormatter bf = new BinaryFormatter();
         GameData data = (GameData)bf.Deserialize(file);
         file.Close();
-
-        print(data);
 
         pb.speed = data.speed;
         pb.shootActivate = data.shootActivate;

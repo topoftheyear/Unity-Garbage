@@ -11,7 +11,7 @@ public class Sply : Enemy
         health = 2;
         max_health = health;
 
-        speed = 0.03f;
+        speed = 0.04f;
     }
 
     public override void Move()
@@ -19,7 +19,7 @@ public class Sply : Enemy
         GameObject player = GameObject.Find("Player");
         float distance = Mathf.Abs(Vector3.Distance(this.transform.position, player.transform.position));
 
-        if (distance < 6f)
+        if (distance < 5f)
         {
             float x = 0;
             float y = 0;
