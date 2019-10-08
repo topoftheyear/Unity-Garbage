@@ -5,6 +5,7 @@ using UnityEngine;
 public class PixelSpawnerBehavior : MonoBehaviour
 {
     GameObject player;
+    GameMasterBehavior gm;
     public GameObject ztar;
 
     public Sprite one;
@@ -16,11 +17,17 @@ public class PixelSpawnerBehavior : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Main Camera");
+        gm = GameObject.Find("GameMaster").GetComponent<GameMasterBehavior>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (gm.paused)
+        {
+            return;
+        }
+
         this.transform.position = player.transform.position + new Vector3(15f, 0);
         transform.position = new Vector3(transform.position.x, transform.position.y, 19);
 

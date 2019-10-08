@@ -26,13 +26,17 @@ public class Enemy : MonoBehaviour
         explosion = Resources.Load("Objects/Explosion") as GameObject;
 
         float num = Random.value;
-        if (num < 0.5f)
+        if (num < 0.1f)
         {
             upgrade = Resources.Load("Objects/Upgrades/TimeUpgrade Variant") as GameObject;
         }
-        else
+        else if (num < 0.2f)
         {
             upgrade = Resources.Load("Objects/Upgrades/SpeedUpgrade") as GameObject;
+        }
+        else
+        {
+            upgrade = null;
         }
 
         rend = this.GetComponent<Renderer>();

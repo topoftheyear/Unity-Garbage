@@ -19,7 +19,7 @@ public class Sply : Enemy
         GameObject player = GameObject.Find("Player");
         float distance = Mathf.Abs(Vector3.Distance(this.transform.position, player.transform.position));
 
-        if (distance < 5f)
+        if (distance < 3.5f)
         {
             float x = 0;
             float y = 0;

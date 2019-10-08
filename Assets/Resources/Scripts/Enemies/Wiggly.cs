@@ -11,7 +11,7 @@ public class Wiggly : Enemy
         health = 6;
         max_health = health;
 
-        speed = 0.005f;
+        speed = 0.008f;
     }
 
     public override void Move()
